@@ -13,18 +13,20 @@ import com.jme3.math.Vector3f;
 public class Block {
     
     protected Vector3f position;
-    protected Mesh mesh;
+    //TODO: protected Mesh mesh;
+    protected enum BlockState {idleState, clearingState, killState, currentState, playState, explodeState, flashingState, countDownState};
     protected BlockState state;
     protected int points;
+ 
     
     public Block(){}
     public void draw(){}
     public void update(){}
     public void setState(BlockState s){}
     public BlockState getState(BlockState s){return state;}
-    public int getPoints(){}
-    
-    public Vector3f getPosition(){ return position;}
+    public int getPoints(){return points;}
+    public Vector3f getPosition() {return position;}
+    public void setPosition(Vector3f p){};
     
     
     
