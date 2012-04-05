@@ -11,6 +11,7 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
+import com.jme3.texture.Texture;
 
 /**
  * test
@@ -31,6 +32,16 @@ public class Main extends SimpleApplication {
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setColor("Color", ColorRGBA.Blue);
         geom.setMaterial(mat);
+        
+        /** A simple textured cube. */ 
+        Box boxshape1 = new Box(Vector3f.ZERO, 1f,1f,1f); 
+        Geometry cube = new Geometry("A Textured Box", boxshape1); 
+        Material mat_stl = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
+        Texture tex_ml = assetManager.loadTexture("Interface/background.png"); 
+        mat_stl.setTexture("ColorMap", tex_ml); 
+        cube.setMaterial(mat_stl); 
+        rootNode.attachChild(cube); 
+        /*------------------------------------*/
 
         rootNode.attachChild(geom);
         
@@ -68,7 +79,7 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleUpdate(float tpf) {
-       
+       rootNode.getChild("A Textured Box").rotate(0f, .001f, .001f);
     }
 
     @Override
