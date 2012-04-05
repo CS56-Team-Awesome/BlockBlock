@@ -22,5 +22,7 @@ public class GreenBlock extends Block {
     public void update() {
         
     }
+    @Override
+    public void draw() {}
     
 }

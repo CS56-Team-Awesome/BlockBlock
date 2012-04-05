@@ -8,7 +8,7 @@ package mygame;
  *
  * @author kayvanboudai
  */
-public class YellowBlock {
+public class YellowBlock extends Block {
         
         public boolean hasRotated;
         

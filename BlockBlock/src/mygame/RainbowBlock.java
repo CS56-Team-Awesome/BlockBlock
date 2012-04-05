@@ -19,6 +19,8 @@ public class RainbowBlock extends Block {
     public void update() {
         super.update();
     }
+    @Override
+    public void draw() {}
     
     
     

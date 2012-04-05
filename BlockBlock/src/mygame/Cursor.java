@@ -17,12 +17,9 @@ public class Cursor {
     private CursorState state;
 
     public Cursor() {
+        position = new Vector3f(0,0,0);
     }
-
-    public Cursor(Vector3f position) {
-        this.position = position;
-    }
-
+    
     public CursorState getState() {
         return state;
     }

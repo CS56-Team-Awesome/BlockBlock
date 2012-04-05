@@ -12,5 +12,8 @@ public class BlackBlock extends RedBlock {
     private int counter;
     
     public BlackBlock() {}
+    @Override
     public void update() {}
+    @Override
+    public void draw() {}
 }
