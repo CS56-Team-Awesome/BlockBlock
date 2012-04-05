@@ -35,7 +35,7 @@ public class Main extends SimpleApplication {
         
         /** A simple textured cube. */ 
         Box boxshape1 = new Box(Vector3f.ZERO, 1f,1f,1f); 
-        Geometry cube = new Geometry("A Textured Box", boxshape1); 
+        final Geometry cube = new Geometry("A Textured Box", boxshape1); 
         Material mat_stl = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         Texture tex_ml = assetManager.loadTexture("Interface/background.png"); 
         mat_stl.setTexture("ColorMap", tex_ml); 
@@ -43,7 +43,7 @@ public class Main extends SimpleApplication {
         rootNode.attachChild(cube); 
         /*------------------------------------*/
 
-        rootNode.attachChild(geom);
+        //rootNode.attachChild(geom);
         
         
         cam.setLocation(new Vector3f(0,0,50));
@@ -66,10 +66,10 @@ public class Main extends SimpleApplication {
      if ("Pause Game".equals(name) && !keyPressed) System.out.println("Pause pushed");
      if ("Drop Block".equals(name) && !keyPressed) System.out.println("Drop pushed");
      if ("Exit".equals(name) && !keyPressed) stop();
-     if ("Move Block Left".equals(name) && !keyPressed) geom.setLocalTranslation(x -= 2.5, y, 0);
-     if ("Move Block Right".equals(name) && !keyPressed) geom.setLocalTranslation(x += 2.5, y, 0);
-     if ("Move Block Up".equals(name) && !keyPressed) geom.setLocalTranslation(x, y += 2.5, 0);
-     if ("Move Block Down".equals(name) && !keyPressed) geom.setLocalTranslation(x, y -= 2.5, 0);
+     if ("Move Block Left".equals(name) && !keyPressed) cube.setLocalTranslation(x -= 2.5, y, 0);
+     if ("Move Block Right".equals(name) && !keyPressed) cube.setLocalTranslation(x += 2.5, y, 0);
+     if ("Move Block Up".equals(name) && !keyPressed) cube.setLocalTranslation(x, y += 2.5, 0);
+     if ("Move Block Down".equals(name) && !keyPressed) cube.setLocalTranslation(x, y -= 2.5, 0);
   }
 };
         
