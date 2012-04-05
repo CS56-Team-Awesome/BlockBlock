@@ -14,7 +14,7 @@ public class Block {
     
     protected Vector3f position;
     //TODO: protected Mesh mesh;
-    protected enum BlockState {idleState, clearingState, killState, currentState, playState, explodeState, flashingState, countDownState};
+    public enum BlockState {idleState, clearingState, killState, currentState, playState, explodeState, flashingState, countDownState};
     protected BlockState state;
     protected int points;
     protected enum Color {Red, Blue, Black, Yellow, Green, Grey, Orange};
