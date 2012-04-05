@@ -12,6 +12,7 @@ public class BlueBlock extends Block {
 
     public BlueBlock() {
         super();
+        
     }
     
 }
