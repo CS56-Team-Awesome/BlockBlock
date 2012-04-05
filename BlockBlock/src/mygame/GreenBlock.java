@@ -8,12 +8,19 @@ package mygame;
  *
  * @author kaizokuace
  */
-public class RedBlock extends Block {
-    public RedBlock() {
-        super();
+public class GreenBlock extends Block {
+    
+    private int counter;
+
+    public GreenBlock() {
     }
+    
+    public GreenBlock(int counter) {
+    }
+
     @Override
     public void update() {
         
     }
+    
 }

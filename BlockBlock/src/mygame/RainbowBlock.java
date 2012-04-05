@@ -8,12 +8,18 @@ package mygame;
  *
  * @author kaizokuace
  */
-public class RedBlock extends Block {
-    public RedBlock() {
+public class RainbowBlock extends Block {
+    private int counter;
+
+    public RainbowBlock() {
         super();
     }
+
     @Override
     public void update() {
-        
+        super.update();
     }
+    
+    
+    
 }
