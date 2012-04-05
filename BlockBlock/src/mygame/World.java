@@ -19,7 +19,7 @@ public class World {
     public World() {}
     public void update() {}
     public void draw() {}
-   // public void Input(InputState inputState) {} //TODO figure out input
+   //TODO: figure out input and make input state - public void Input(InputState inputState) {} 
     
     
 }

@@ -34,6 +34,9 @@ public class Main extends SimpleApplication {
 
         rootNode.attachChild(geom);
         
+        
+        cam.setLocation(new Vector3f(0,0,50));
+        
         inputManager.clearMappings();
         
         inputManager.addMapping("Exit", new KeyTrigger(KeyInput.KEY_ESCAPE));
@@ -46,29 +49,21 @@ public class Main extends SimpleApplication {
         
         
         ActionListener actionListener = new ActionListener() {
-            public void onAction(String name, boolean keyPressed, float tpf) {
-     if ("Pause Game".equals(name)) System.out.println("Pause pushed");
-     if ("Drop Block".equals(name)) System.out.println("Drop pushed");
-     if ("Exit".equals(name)) stop();
-  }
-};
-    
-        AnalogListener analogListener = new AnalogListener() {
             float x = 0;
             float y = 0;
-            public void onAnalog(String name, float keyPressed, float tpf) {
-                
-             if ("Move Block Left".equals(name)) geom.setLocalTranslation(x -= .01, y, 0);
-             if ("Move Block Right".equals(name)) geom.setLocalTranslation(x += .01, y, 0);
-             if ("Move Block Up".equals(name)) geom.setLocalTranslation(x, y += .01, 0);
-             if ("Move Block Down".equals(name)) geom.setLocalTranslation(x, y -= .01, 0);
-            
-            }
-        };
+            public void onAction(String name, boolean keyPressed, float tpf) {
+     if ("Pause Game".equals(name) && !keyPressed) System.out.println("Pause pushed");
+     if ("Drop Block".equals(name) && !keyPressed) System.out.println("Drop pushed");
+     if ("Exit".equals(name) && !keyPressed) stop();
+     if ("Move Block Left".equals(name) && !keyPressed) geom.setLocalTranslation(x -= 2.5, y, 0);
+     if ("Move Block Right".equals(name) && !keyPressed) geom.setLocalTranslation(x += 2.5, y, 0);
+     if ("Move Block Up".equals(name) && !keyPressed) geom.setLocalTranslation(x, y += 2.5, 0);
+     if ("Move Block Down".equals(name) && !keyPressed) geom.setLocalTranslation(x, y -= 2.5, 0);
+  }
+};
         
-        inputManager.addListener(actionListener, new String[]{"Pause Game","Drop Block", "Exit"});
-        inputManager.addListener(analogListener, new String[]{"Move Block Right", "Move Block Left", "Move Block Up", "Move Block Down"});
-        
+        inputManager.addListener(actionListener, new String[]{"Pause Game","Drop Block", "Exit","Move Block Right", 
+                                                              "Move Block Left", "Move Block Up", "Move Block Down"});
     }
 
     @Override
