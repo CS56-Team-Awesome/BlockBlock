@@ -3,7 +3,6 @@ package mygame;
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
-import com.jme3.input.controls.AnalogListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -35,7 +34,7 @@ public class Main extends SimpleApplication {
         
         /** A simple textured cube. */ 
         Box boxshape1 = new Box(Vector3f.ZERO, 1f,1f,1f); 
-        final Geometry cube = new Geometry("A Textured Box", boxshape1); 
+        Geometry cube = new Geometry("A Textured Box", boxshape1); 
         Material mat_stl = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
         Texture tex_ml = assetManager.loadTexture("Interface/background.png"); 
         mat_stl.setTexture("ColorMap", tex_ml); 
@@ -66,10 +65,10 @@ public class Main extends SimpleApplication {
      if ("Pause Game".equals(name) && !keyPressed) System.out.println("Pause pushed");
      if ("Drop Block".equals(name) && !keyPressed) System.out.println("Drop pushed");
      if ("Exit".equals(name) && !keyPressed) stop();
-     if ("Move Block Left".equals(name) && !keyPressed) cube.setLocalTranslation(x -= 2.5, y, 0);
-     if ("Move Block Right".equals(name) && !keyPressed) cube.setLocalTranslation(x += 2.5, y, 0);
-     if ("Move Block Up".equals(name) && !keyPressed) cube.setLocalTranslation(x, y += 2.5, 0);
-     if ("Move Block Down".equals(name) && !keyPressed) cube.setLocalTranslation(x, y -= 2.5, 0);
+     if ("Move Block Left".equals(name) && !keyPressed)   rootNode.getChild("A Textured Box").setLocalTranslation(x -= 2.5, y, 0);
+     if ("Move Block Right".equals(name) && !keyPressed)   rootNode.getChild("A Textured Box").setLocalTranslation(x += 2.5, y, 0);
+     if ("Move Block Up".equals(name) && !keyPressed)   rootNode.getChild("A Textured Box").setLocalTranslation(x, y += 2.5, 0);
+     if ("Move Block Down".equals(name) && !keyPressed)   rootNode.getChild("A Textured Box").setLocalTranslation(x, y -= 2.5, 0);
   }
 };
         
