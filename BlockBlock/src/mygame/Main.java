@@ -25,12 +25,7 @@ public class Main extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        Box b = new Box(Vector3f.ZERO, 1, 1, 1);
-        final Geometry geom = new Geometry("Box", b);
-
-        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setColor("Color", ColorRGBA.Blue);
-        geom.setMaterial(mat);
+        
         
         /** A simple textured cube. */ 
         Box boxshape1 = new Box(Vector3f.ZERO, 1f,1f,1f); 
@@ -41,8 +36,6 @@ public class Main extends SimpleApplication {
         cube.setMaterial(mat_stl); 
         rootNode.attachChild(cube); 
         /*------------------------------------*/
-
-        //rootNode.attachChild(geom);
         
         
         cam.setLocation(new Vector3f(0,0,50));
