@@ -57,7 +57,7 @@ public class PausedState extends AbstractAppState {
         this.viewPort     = this.app.getViewPort();
         this.guiNode      = this.app.getGuiNode();
         
-        stateManager.getState(PausedState.class).setEnabled(false);
+        setEnabled(false);
         System.out.println("PausedState Initialized");
     }
 

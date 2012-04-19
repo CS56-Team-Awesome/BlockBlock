@@ -9,6 +9,7 @@ import com.jme3.asset.AssetManager;
 import com.jme3.input.InputManager;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.math.ColorRGBA;
+import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 
@@ -25,6 +26,7 @@ public class RunningState extends AbstractAppState {
     private AppStateManager   stateManager;
     private InputManager      inputManager;
     private ViewPort          viewPort;
+    private Camera            cam;
 
     
     public RunningState() {
@@ -45,7 +47,7 @@ public class RunningState extends AbstractAppState {
         this.inputManager = this.app.getInputManager();
         this.viewPort     = this.app.getViewPort();
         
-        stateManager.getState(RunningState.class).setEnabled(true);
+        setEnabled(true);
         System.out.println("RunningState Initialized");
         viewPort.setBackgroundColor(ColorRGBA.White);
         
@@ -93,6 +95,10 @@ public class RunningState extends AbstractAppState {
     @Override
     public void update(float tpf) {
         super.update(tpf);
+    }
+
+    void setCam(Camera cam) {
+        this.cam = cam;
     }
     
 }

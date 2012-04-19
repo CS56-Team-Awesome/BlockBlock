@@ -10,7 +10,10 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.Box;
+import com.jme3.system.AppSettings;
 import com.jme3.texture.Texture;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  * test
@@ -22,20 +25,26 @@ public class Main extends SimpleApplication {
         Main app = new Main();
         app.start();
     }
+    
+    @Override
+    public void start(){
+        // Get the default toolkit
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        // Get the current screen size
+        Dimension scrnsize = toolkit.getScreenSize();
+        
+        AppSettings settings = new AppSettings(true);
+        settings.setResolution((int)(scrnsize.width/1.2), (int)(scrnsize.height/1.2));
+        settings.setTitle("BlockBlock");
+        //settings.setFullscreen(true); TODO: Fix full screen
+        setShowSettings(false);
+        setSettings(settings);
+        
+        super.start();
+    }
 
     @Override
     public void simpleInitApp() {
-        
-        
-        /** A simple textured cube. */ 
-        Box boxshape1 = new Box(Vector3f.ZERO, 1f,1f,1f); 
-        Geometry cube = new Geometry("A Textured Box", boxshape1); 
-        Material mat_stl = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md"); 
-        Texture tex_ml = assetManager.loadTexture("Interface/background.png"); 
-        mat_stl.setTexture("ColorMap", tex_ml); 
-        cube.setMaterial(mat_stl); 
-        rootNode.attachChild(cube); 
-        /*------------------------------------*/
         
         
         cam.setLocation(new Vector3f(0,0,50));
@@ -50,28 +59,14 @@ public class Main extends SimpleApplication {
         inputManager.addMapping("Drop Block", new KeyTrigger(KeyInput.KEY_SPACE));
         inputManager.addMapping("Pause Game", new KeyTrigger(KeyInput.KEY_P));
         
-        
-        ActionListener actionListener = new ActionListener() {
-            float x = 0;
-            float y = 0;
-            public void onAction(String name, boolean keyPressed, float tpf) {
-     if ("Pause Game".equals(name) && !keyPressed) System.out.println("Pause pushed");
-     if ("Drop Block".equals(name) && !keyPressed) System.out.println("Drop pushed");
-     if ("Exit".equals(name) && !keyPressed) stop();
-     if ("Move Block Left".equals(name) && !keyPressed)   rootNode.getChild("A Textured Box").setLocalTranslation(x -= 2.5, y, 0);
-     if ("Move Block Right".equals(name) && !keyPressed)   rootNode.getChild("A Textured Box").setLocalTranslation(x += 2.5, y, 0);
-     if ("Move Block Up".equals(name) && !keyPressed)   rootNode.getChild("A Textured Box").setLocalTranslation(x, y += 2.5, 0);
-     if ("Move Block Down".equals(name) && !keyPressed)   rootNode.getChild("A Textured Box").setLocalTranslation(x, y -= 2.5, 0);
+        stateManager.attach(new RunningState());
+        stateManager.attach(new PausedState());
+        stateManager.getState(PausedState.class).setSettings(settings);
+        stateManager.getState(RunningState.class).setCam(cam);
   }
-};
-        
-        inputManager.addListener(actionListener, new String[]{"Pause Game","Drop Block", "Exit","Move Block Right", 
-                                                              "Move Block Left", "Move Block Up", "Move Block Down"});
-    }
 
     @Override
     public void simpleUpdate(float tpf) {
-       rootNode.getChild("A Textured Box").rotate(0f, .001f, .001f);
     }
 
     @Override
