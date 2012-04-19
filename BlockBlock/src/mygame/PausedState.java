@@ -7,14 +7,10 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
-import com.jme3.font.BitmapText;
 import com.jme3.input.InputManager;
-import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
-import com.jme3.input.controls.KeyTrigger;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
-import com.jme3.scene.Spatial.CullHint;
 import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
 
@@ -74,11 +70,12 @@ public class PausedState extends AbstractAppState {
             pic.setPosition(settings.getWidth()/4, settings.getHeight()/4);
             guiNode.attachChild(pic);
             System.out.println("PausedState enabled");
+            
+            //TODO: make pause menu
 
         
         ActionListener actionListener = new ActionListener() {
-            float x = 0;
-            float y = 0;
+            
             public void onAction(String name, boolean keyPressed, float tpf) {
                  if ("Pause Game".equals(name) && !keyPressed) {
                      PausedState.this.stateManager.getState(PausedState.class).setEnabled(false);
@@ -86,13 +83,12 @@ public class PausedState extends AbstractAppState {
                      guiNode.detachAllChildren();
                      System.out.println("PausedState disabled");
                      inputManager.removeListener(this);
-                 
                  }
-                 if ("Drop Block".equals(name) && !keyPressed) System.out.println("Drop pushed");
-                 if ("Move Block Left".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x -= 2.5, y, 0);
-                 if ("Move Block Right".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x += 2.5, y, 0);
-                 if ("Move Block Up".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x, y += 2.5, 0);
-                 if ("Move Block Down".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x, y -= 2.5, 0);
+                 if ("Drop Block".equals(name) && !keyPressed) 
+                 if ("Move Block Left".equals(name) && !keyPressed)   
+                 if ("Move Block Right".equals(name) && !keyPressed)   
+                 if ("Move Block Up".equals(name) && !keyPressed)  
+                 if ("Move Block Down".equals(name) && !keyPressed){}
               }
             };
         

@@ -1,4 +1,7 @@
-
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package mygame;
 
 import com.jme3.app.Application;
@@ -8,17 +11,14 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
 import com.jme3.input.InputManager;
 import com.jme3.input.controls.ActionListener;
-import com.jme3.math.ColorRGBA;
-import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 
-
 /**
  *
- * @author kaizokuace
+ * @author kayvanboudai
  */
-public class RunningState extends AbstractAppState {
+public class SplashState extends AbstractAppState {
     
     private SimpleApplication app;
     private Node              rootNode;
@@ -26,10 +26,9 @@ public class RunningState extends AbstractAppState {
     private AppStateManager   stateManager;
     private InputManager      inputManager;
     private ViewPort          viewPort;
-    private Camera            cam;
 
     
-    public RunningState() {
+    public SplashState() {
     }
     
     @Override
@@ -47,9 +46,9 @@ public class RunningState extends AbstractAppState {
         this.inputManager = this.app.getInputManager();
         this.viewPort     = this.app.getViewPort();
         
-        setEnabled(false);
-        System.out.println("RunningState Initialized");
-        viewPort.setBackgroundColor(ColorRGBA.White);
+        setEnabled(true);
+        //TODO: make splash screen animation and menu
+        
     }
 
     @Override
@@ -58,23 +57,14 @@ public class RunningState extends AbstractAppState {
         if(enabled){
      
         ActionListener actionListener = new ActionListener() {
-            float x = 0;
-            float y = 0;
-            int i = 0;
             
             public void onAction(String name, boolean keyPressed, float tpf) {
-                 if ("Pause Game".equals(name) && !keyPressed) {
-                     RunningState.this.stateManager.getState(PausedState.class).setEnabled(true);
-                     RunningState.this.stateManager.getState(RunningState.class).setEnabled(false);
-                     System.out.println("RunningState disabled");
-                     inputManager.removeListener(this);
-                     
-                 }
+                 if ("Pause Game".equals(name) && !keyPressed)
                  if ("Drop Block".equals(name) && !keyPressed)
-                 if ("Move Block Left".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x -= 2.5, y, 0);
-                 if ("Move Block Right".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x += 2.5, y, 0);
-                 if ("Move Block Up".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x, y += 2.5, 0);
-                 if ("Move Block Down".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x, y -= 2.5, 0);
+                 if ("Move Block Left".equals(name) && !keyPressed)
+                 if ("Move Block Right".equals(name) && !keyPressed)
+                 if ("Move Block Up".equals(name) && !keyPressed)
+                 if ("Move Block Down".equals(name) && !keyPressed)
                  if ("Exit".equals(name) && !keyPressed) app.stop();
             }
         };
@@ -91,10 +81,6 @@ public class RunningState extends AbstractAppState {
     @Override
     public void update(float tpf) {
         super.update(tpf);
-    }
-
-    void setCam(Camera cam) {
-        this.cam = cam;
     }
     
 }
