@@ -16,6 +16,7 @@ public class GridFactory {
     
     public GridFactory(Node rootNode) {
         this.rootNode = rootNode;
+        //TODO: Write code.....maybe give it blockNode instead?
     }
     
 }

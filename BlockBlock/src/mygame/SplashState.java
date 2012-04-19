@@ -55,6 +55,8 @@ public class SplashState extends AbstractAppState {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         if(enabled){
+            
+            //TODO: Write code
      
         ActionListener actionListener = new ActionListener() {
             
@@ -73,7 +75,7 @@ public class SplashState extends AbstractAppState {
                                                             "Move Block Left", "Move Block Up", "Move Block Down", "Exit"});
         }
         else{
-           
+           //TODO: Write code
         }
             
     }

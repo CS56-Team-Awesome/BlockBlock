@@ -29,11 +29,6 @@ public class PausedState extends AbstractAppState {
     private Node              guiNode;
     private AppSettings       settings;
 
-    public void setSettings(AppSettings s) {
-        this.settings = s;
-    }
-    
-
     public PausedState() {
     }
     
@@ -97,13 +92,17 @@ public class PausedState extends AbstractAppState {
         
         }
         else{
-        
+            //TODO: Write code
         }
     }
 
     @Override
     public void update(float tpf) {
         super.update(tpf);
+    }
+    
+    public void setSettings(AppSettings s) {
+        this.settings = s;
     }
     
 }

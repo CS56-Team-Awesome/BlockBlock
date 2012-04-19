@@ -15,7 +15,7 @@ public class Cursor {
     
     Cursor()
     {
-        //TODO: set to center of grid
+        //TODO: set to center of grid.....Write code
     }
 
     public int getX() {

@@ -58,6 +58,8 @@ public class Main extends SimpleApplication {
         stateManager.attach(new PausedState());
         stateManager.getState(PausedState.class).setSettings(settings);
         stateManager.getState(RunningState.class).setCam(cam);
+        
+        //TODO: Write code
   }
 
     @Override
