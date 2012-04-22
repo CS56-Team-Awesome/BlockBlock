@@ -26,9 +26,7 @@ public class BlockFactory {
     
     Spatial getBlock()
     {
-        Spatial s = block;
-        //TODO: write code
-        return s;
+        return block;
     }
     
 }
