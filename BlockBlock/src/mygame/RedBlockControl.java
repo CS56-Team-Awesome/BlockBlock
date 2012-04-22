@@ -11,6 +11,7 @@ package mygame;
 public class RedBlockControl extends BlockControl {
 
     public RedBlockControl() {
+        
     }
 
     @Override
