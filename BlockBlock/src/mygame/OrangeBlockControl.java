@@ -15,7 +15,13 @@ public class OrangeBlockControl extends BlockControl {
 
     @Override
     protected void controlUpdate(float tpf) {
-        super.controlUpdate(tpf);
+        switch (state) {
+            case antidoteState:
+                //TODO: antidote code here
+                break;
+            default:
+                super.controlUpdate(tpf);
+        }
     }
     
 }

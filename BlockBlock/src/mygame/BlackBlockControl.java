@@ -15,7 +15,15 @@ public class BlackBlockControl extends BlockControl {
 
     @Override
     protected void controlUpdate(float tpf) {
-        super.controlUpdate(tpf);
+        switch (state) {
+            case explodeState:
+                //TODO: explode code here
+                break;
+            case countDownState:
+                //TODO: countdown code
+            default:
+                super.controlUpdate(tpf);
+        }
     }
     
 }

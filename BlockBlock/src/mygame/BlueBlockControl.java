@@ -15,7 +15,16 @@ public class BlueBlockControl extends BlockControl {
 
     @Override
     protected void controlUpdate(float tpf) {
-        super.controlUpdate(tpf);
+        switch (state) {
+            case clearingState:
+                //TODO: clearing code here
+                break;
+            case explodeState:
+                //TODO: explode code here
+                break;
+            default:
+                super.controlUpdate(tpf);
+        }
     }
     
 }

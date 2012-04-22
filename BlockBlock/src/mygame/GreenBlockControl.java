@@ -15,7 +15,16 @@ public class GreenBlockControl extends BlockControl {
 
     @Override
     protected void controlUpdate(float tpf) {
-        super.controlUpdate(tpf);
+        switch (state) {
+            case countDownState:
+                //TODO: countdown State code here
+                break;
+            case poisonState:
+                //TODO: poison code here
+                break;
+            default:
+                super.controlUpdate(tpf);
+        }
     }
     
 }

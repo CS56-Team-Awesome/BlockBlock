@@ -15,7 +15,13 @@ public class RainbowBlockControl extends BlockControl {
 
     @Override
     protected void controlUpdate(float tpf) {
-        super.controlUpdate(tpf);
+        switch (state) {
+            case rainbowState:
+                //TODO: rainbow code here
+                break;
+            default:
+                super.controlUpdate(tpf);
+        }
     }
     
 }

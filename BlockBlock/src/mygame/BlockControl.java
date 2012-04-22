@@ -17,7 +17,8 @@ import com.jme3.scene.control.Control;
 public class BlockControl extends AbstractControl implements Savable, Cloneable {
     
     /*-------------------------------Fields-----------------------------------*/
-    public enum BlockState { idleState, clearingState, killState, cursorState, dropState, explodeState, rainbowState, countDownState };
+    public enum BlockState { idleState, clearingState, killState, cursorState, dropState, explodeState, rainbowState, 
+                             countDownState, rotateState, poisonState, antidoteState };
     public enum Color { Red, Blue, Black, Yellow, Green, Grey, Orange, Rainbow };
     protected BlockState state;
     private Color color;

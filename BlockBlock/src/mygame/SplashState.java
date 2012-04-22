@@ -20,12 +20,15 @@ import com.jme3.scene.Node;
  */
 public class SplashState extends AbstractAppState {
     
+    public enum SplashStates {splashState, menuState};
     private SimpleApplication app;
     private Node              rootNode;
     private AssetManager      assetManager;
     private AppStateManager   stateManager;
     private InputManager      inputManager;
     private ViewPort          viewPort;
+    private SplashStates state;
+    
 
     
     public SplashState() {
@@ -47,6 +50,7 @@ public class SplashState extends AbstractAppState {
         this.viewPort     = this.app.getViewPort();
         
         setEnabled(true);
+        state = SplashStates.splashState;
         //TODO: make splash screen animation and menu
         
     }
@@ -54,7 +58,7 @@ public class SplashState extends AbstractAppState {
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        if(enabled){
+        if(enabled && state == SplashStates.menuState){
             
             //TODO: Write code
      
@@ -86,6 +90,13 @@ public class SplashState extends AbstractAppState {
 
     @Override
     public void update(float tpf) {
+        switch (state)
+        {
+            case splashState:
+                //TODO: animation code change state to menuState
+            case menuState:
+                //Todo: GUI code
+        }
         super.update(tpf);
     }
     
