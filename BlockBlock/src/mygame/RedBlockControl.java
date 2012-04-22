@@ -15,7 +15,13 @@ public class RedBlockControl extends BlockControl {
 
     @Override
     protected void controlUpdate(float tpf) {
-        super.controlUpdate(tpf);
+        switch (state) {
+            case explodeState:
+                //TODO: explode code here
+                break;
+            default:
+                super.controlUpdate(tpf);
+        }
     }
     
 }

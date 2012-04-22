@@ -17,9 +17,9 @@ import com.jme3.scene.control.Control;
 public class BlockControl extends AbstractControl implements Savable, Cloneable {
     
     /*-------------------------------Fields-----------------------------------*/
-    public enum BlockState { idleState, clearingState, killState, currentState, playState, explodeState, flashingState, countDownState };
+    public enum BlockState { idleState, clearingState, killState, cursorState, dropState, explodeState, rainbowState, countDownState };
     public enum Color { Red, Blue, Black, Yellow, Green, Grey, Orange, Rainbow };
-    private BlockState state;
+    protected BlockState state;
     private Color color;
     private int points;
     
@@ -51,6 +51,18 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     @Override
     protected void controlUpdate(float tpf) {
         //TODO: code here
+        switch (state){
+            case idleState:
+                //TODO: idle state code
+            case clearingState:
+                //TODO: clearing animation code then change to killState
+            case killState:
+                //TODO: detatch from graph
+            case cursorState:
+                //TODO: get x, y pos from cursor, from gridControl
+            case dropState:
+                //TODO: dropping block animation
+        }
     }
 
     @Override
