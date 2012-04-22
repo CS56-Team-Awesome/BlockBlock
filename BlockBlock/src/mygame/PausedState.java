@@ -70,19 +70,20 @@ public class PausedState extends AbstractAppState {
 
         
         ActionListener actionListener = new ActionListener() {
+            float x = 0;
+            float y = 0;
             
             public void onAction(String name, boolean keyPressed, float tpf) {
-                 if ("Pause Game".equals(name) && !keyPressed) {
-                     PausedState.this.stateManager.getState(PausedState.class).setEnabled(false);
+                 if ("Pause Game".equals(name) && !keyPressed || "Exit".equals(name) && !keyPressed) {
                      PausedState.this.stateManager.getState(RunningState.class).setEnabled(true);
                      guiNode.detachAllChildren();
                      System.out.println("PausedState disabled");
                      inputManager.removeListener(this);
+                     setEnabled(false);
                  }
-                 if ("Drop Block".equals(name) && !keyPressed) 
-                 if ("Move Block Left".equals(name) && !keyPressed)   
-                 if ("Move Block Right".equals(name) && !keyPressed)   
-                 if ("Move Block Up".equals(name) && !keyPressed)  
+                 if ("Move Block Left".equals(name) && !keyPressed){}
+                 if ("Move Block Right".equals(name) && !keyPressed){}
+                 if ("Move Block Up".equals(name) && !keyPressed){}   
                  if ("Move Block Down".equals(name) && !keyPressed){}
               }
             };

@@ -61,12 +61,16 @@ public class SplashState extends AbstractAppState {
         ActionListener actionListener = new ActionListener() {
             
             public void onAction(String name, boolean keyPressed, float tpf) {
-                 if ("Pause Game".equals(name) && !keyPressed)
-                 if ("Drop Block".equals(name) && !keyPressed)
-                 if ("Move Block Left".equals(name) && !keyPressed)
-                 if ("Move Block Right".equals(name) && !keyPressed)
-                 if ("Move Block Up".equals(name) && !keyPressed)
-                 if ("Move Block Down".equals(name) && !keyPressed)
+                 if ("Pause Game".equals(name) && !keyPressed){}
+                 if ("Drop Block".equals(name) && !keyPressed) 
+                 {
+                     stateManager.getState(RunningState.class).setEnabled(true);
+                     setEnabled(false);
+                 }
+                 if ("Move Block Left".equals(name) && !keyPressed){}
+                 if ("Move Block Right".equals(name) && !keyPressed){}
+                 if ("Move Block Up".equals(name) && !keyPressed){}
+                 if ("Move Block Down".equals(name) && !keyPressed){}
                  if ("Exit".equals(name) && !keyPressed) app.stop();
             }
         };
@@ -75,7 +79,7 @@ public class SplashState extends AbstractAppState {
                                                             "Move Block Left", "Move Block Up", "Move Block Down", "Exit"});
         }
         else{
-           //TODO: Write code
+           
         }
             
     }

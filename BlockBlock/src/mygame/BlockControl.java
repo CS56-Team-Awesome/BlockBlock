@@ -55,11 +55,18 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
 
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     public Control cloneForSpatial(Spatial spatial) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        final BlockControl control = new BlockControl();
+        /* Optional: use setters to copy userdata into the cloned control */
+        // control.setIndex(i); // example
+        control.points = this.points;
+        control.color = this.color;
+        control.state = this.state;
+        control.setSpatial(spatial);
+        return control;
     }
     
 }

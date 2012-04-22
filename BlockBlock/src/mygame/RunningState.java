@@ -12,6 +12,7 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
+import mygame.BlockControl.Color;
 
 
 /**
@@ -57,27 +58,28 @@ public class RunningState extends AbstractAppState {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         if(enabled){
+            System.out.println("run enabled");
             
             //TODO: Write code
      
         ActionListener actionListener = new ActionListener() {
-            float x = 0;
-            float y = 0;
-            int i = 0;
             
             public void onAction(String name, boolean keyPressed, float tpf) {
                  if ("Pause Game".equals(name) && !keyPressed) {
                      RunningState.this.stateManager.getState(PausedState.class).setEnabled(true);
-                     RunningState.this.stateManager.getState(RunningState.class).setEnabled(false);
                      System.out.println("RunningState disabled");
                      inputManager.removeListener(this);
+                     setEnabled(false);
                      
                  }
                  if ("Drop Block".equals(name) && !keyPressed)
-                 if ("Move Block Left".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x -= 2.5, y, 0);
-                 if ("Move Block Right".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x += 2.5, y, 0);
-                 if ("Move Block Up".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x, y += 2.5, 0);
-                 if ("Move Block Down".equals(name) && !keyPressed)   rootNode.getChild("blockNode").setLocalTranslation(x, y -= 2.5, 0);
+                 {
+                     (new BlockFactory(rootNode.getChild("blockNode"),assetManager, Color.Red)).getBlock();
+                 }
+                 if ("Move Block Left".equals(name) && !keyPressed)   rootNode.getChild("blockNode").move(-2.5f, 0f, 0f);
+                 if ("Move Block Right".equals(name) && !keyPressed)   rootNode.getChild("blockNode").move(2.5f, 0f, 0f);
+                 if ("Move Block Up".equals(name) && !keyPressed)   rootNode.getChild("blockNode").move(0f, 2.5f, 0f);
+                 if ("Move Block Down".equals(name) && !keyPressed)   rootNode.getChild("blockNode").move(0f, -2.5f, 0f);
                  if ("Exit".equals(name) && !keyPressed) app.stop();
             }
         };

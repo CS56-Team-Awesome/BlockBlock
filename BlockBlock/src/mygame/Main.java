@@ -5,6 +5,7 @@ import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
+import com.jme3.scene.Node;
 import com.jme3.system.AppSettings;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -40,6 +41,9 @@ public class Main extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         
+        Node blockNode = new Node("blockNode");
+        
+        rootNode.attachChild(blockNode);
         
         cam.setLocation(new Vector3f(0,0,50));
         
