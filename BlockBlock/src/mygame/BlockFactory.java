@@ -14,15 +14,19 @@ import com.jme3.scene.Spatial;
 public class BlockFactory {
 
     private Node blockNode;
+    private Spatial block;
+    public static int blockCount;
+    
     
     public BlockFactory(Node blockNode) {
         this.blockNode = blockNode;
         //TODO: Write code
+        
     }
     
     Spatial getBlock()
     {
-        Spatial s = null;
+        Spatial s = block;
         //TODO: write code
         return s;
     }
