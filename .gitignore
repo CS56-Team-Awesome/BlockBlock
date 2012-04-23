@@ -8,5 +8,11 @@
 *.ear
 
 .classpath
-
 .project
+
+build.xml
+liblwjgl.jnilib
+MANIFEST.MF
+master-application.jnlp
+nbproject/
+build/
