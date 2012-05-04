@@ -2,21 +2,23 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package mygame;
+package teamawesome.blockblock;
 
 /**
  *
  * @author kaizokuace
  */
-public class RedBlockControl extends BlockControl {
+public class BlueBlockControl extends BlockControl {
 
-    public RedBlockControl() {
-        
+    public BlueBlockControl() {
     }
 
     @Override
     protected void controlUpdate(float tpf) {
         switch (state) {
+            case clearingState:
+                //TODO: clearing code here
+                break;
             case explodeState:
                 //TODO: explode code here
                 break;

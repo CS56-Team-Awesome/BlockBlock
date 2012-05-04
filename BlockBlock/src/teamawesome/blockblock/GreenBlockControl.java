@@ -2,22 +2,25 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package mygame;
+package teamawesome.blockblock;
 
 /**
  *
  * @author kaizokuace
  */
-public class YellowBlockControl extends BlockControl {
+public class GreenBlockControl extends BlockControl {
 
-    public YellowBlockControl() {
+    public GreenBlockControl() {
     }
 
     @Override
     protected void controlUpdate(float tpf) {
         switch (state) {
-            case rotateState:
-                //TODO: rotate code here
+            case countDownState:
+                //TODO: countdown State code here
+                break;
+            case poisonState:
+                //TODO: poison code here
                 break;
             default:
                 super.controlUpdate(tpf);

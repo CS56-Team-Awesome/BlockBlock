@@ -1,7 +1,7 @@
 /*
  * This class serves as functionality for the Grid Tiles.
  */
-package mygame;
+package teamawesome.blockblock;
 
 import com.jme3.export.Savable;
 import com.jme3.renderer.RenderManager;
@@ -16,7 +16,7 @@ import com.jme3.scene.control.Control;
  */
 public class TileControl extends AbstractControl implements Savable, Cloneable {
     /*-------------------------------Fields-----------------------------------*/
-    public enum TileState {idleState};
+    public enum TileState {idleState, cursorState};
     private TileState tileState;
     
     /*-------------------------------Constructor------------------------------*/
@@ -41,7 +41,7 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
     
     @Override
     protected void controlUpdate(float tpf) {
-        //TODO: code here
+        //TODO: state switch here
     }
 
     @Override

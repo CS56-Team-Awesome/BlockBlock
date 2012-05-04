@@ -1,5 +1,5 @@
 
-package mygame;
+package teamawesome.blockblock;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
@@ -12,12 +12,12 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
-import mygame.BlockControl.Color;
+import teamawesome.blockblock.BlockControl.Color;
 
 
 /**
  *
- * @author kaizokuace
+ * @author Kayvan Boudai & Hasen Ahmad
  */
 public class RunningState extends AbstractAppState {
     
@@ -51,43 +51,39 @@ public class RunningState extends AbstractAppState {
         setEnabled(false);
         System.out.println("RunningState Initialized");
         viewPort.setBackgroundColor(ColorRGBA.White);
-        //TODO: Write code
+        //TODO: init real background
+        //TODO: init post processing graphics
     }
 
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        if(enabled){
+        if(enabled) {
             System.out.println("run enabled");
             
             //TODO: Write code
      
-        ActionListener actionListener = new ActionListener() {
-            
-            public void onAction(String name, boolean keyPressed, float tpf) {
-                 if ("Pause Game".equals(name) && !keyPressed) {
-                     RunningState.this.stateManager.getState(PausedState.class).setEnabled(true);
-                     System.out.println("RunningState disabled");
-                     inputManager.removeListener(this);
-                     setEnabled(false);
-                     
-                 }
-                 if ("Drop Block".equals(name) && !keyPressed)
-                 {
-                     (new BlockFactory(rootNode.getChild("blockNode"),assetManager, Color.Red)).getBlock();
-                 }
-                 if ("Move Block Left".equals(name) && !keyPressed)   rootNode.getChild("blockNode").move(-2.5f, 0f, 0f);
-                 if ("Move Block Right".equals(name) && !keyPressed)   rootNode.getChild("blockNode").move(2.5f, 0f, 0f);
-                 if ("Move Block Up".equals(name) && !keyPressed)   rootNode.getChild("blockNode").move(0f, 2.5f, 0f);
-                 if ("Move Block Down".equals(name) && !keyPressed)   rootNode.getChild("blockNode").move(0f, -2.5f, 0f);
-                 if ("Exit".equals(name) && !keyPressed) app.stop();
-            }
-        };
-        
-        inputManager.addListener(actionListener, new String[]{"Pause Game","Drop Block","Move Block Right", 
-                                                            "Move Block Left", "Move Block Up", "Move Block Down", "Exit"});
+            ActionListener actionListener = new ActionListener() {
+                public void onAction(String name, boolean keyPressed, float tpf) {
+                     if ("Pause Game".equals(name) && !keyPressed) {
+                         RunningState.this.stateManager.getState(PausedState.class).setEnabled(true);
+                         System.out.println("RunningState disabled");
+                         inputManager.removeListener(this);
+                         setEnabled(false);
+                     }
+                     if ("Drop Block".equals(name) && !keyPressed) {
+                         (new BlockFactory(rootNode.getChild("blockNode"),assetManager, Color.Red)).getBlock();
+                     }
+                     if ("Move Block Left".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(-2.5f, 0f, 0f);
+                     if ("Move Block Right".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(2.5f, 0f, 0f);
+                     if ("Move Block Up".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(0f, 2.5f, 0f);
+                     if ("Move Block Down".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(0f, -2.5f, 0f);
+                     if ("Exit".equals(name) && !keyPressed) app.stop();
+                }
+            };
+            inputManager.addListener(actionListener, new String[]{"Pause Game", "Drop Block", "Move Block Right", "Move Block Left", "Move Block Up", "Move Block Down", "Exit"});
         }
-        else{
+        else {
            
         }
             
@@ -96,10 +92,10 @@ public class RunningState extends AbstractAppState {
     @Override
     public void update(float tpf) {
         super.update(tpf);
+        //TODO: add main update switch, figure out game states
     }
 
     void setCam(Camera cam) {
         this.cam = cam;
     }
-    
 }

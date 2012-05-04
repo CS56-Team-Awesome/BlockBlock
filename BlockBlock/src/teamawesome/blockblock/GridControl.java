@@ -1,7 +1,7 @@
 /*
  * This class serves as functionality for the Grid.
  */
-package mygame;
+package teamawesome.blockblock;
 
 import com.jme3.export.Savable;
 import com.jme3.renderer.RenderManager;

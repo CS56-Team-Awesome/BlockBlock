@@ -1,9 +1,11 @@
-
-package mygame;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package teamawesome.blockblock;
 
 import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
-
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
@@ -11,25 +13,25 @@ import com.jme3.input.InputManager;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
-import com.jme3.system.AppSettings;
-import com.jme3.ui.Picture;
 
 /**
  *
- * @author kaizokuace
+ * @author kayvanboudai
  */
-public class PausedState extends AbstractAppState {
+public class SplashState extends AbstractAppState {
     
+    public enum SplashStates {splashState, menuState};
     private SimpleApplication app;
     private Node              rootNode;
     private AssetManager      assetManager;
     private AppStateManager   stateManager;
     private InputManager      inputManager;
     private ViewPort          viewPort;
-    private Node              guiNode;
-    private AppSettings       settings;
+    private SplashStates state;
+    
 
-    public PausedState() {
+    
+    public SplashState() {
     }
     
     @Override
@@ -40,70 +42,62 @@ public class PausedState extends AbstractAppState {
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
-        this.app = (SimpleApplication) app; // can cast Application to something more specific
+        this.app = (SimpleApplication) app; 
         this.rootNode     = this.app.getRootNode();
         this.assetManager = this.app.getAssetManager();
         this.stateManager = this.app.getStateManager();
         this.inputManager = this.app.getInputManager();
         this.viewPort     = this.app.getViewPort();
-        this.guiNode      = this.app.getGuiNode();
         
-        setEnabled(false);
-        System.out.println("PausedState Initialized");
+        setEnabled(true);
+        state = SplashStates.splashState;
+        //TODO: make splash screen animation and menu
+        
     }
 
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        if(enabled){
+        if(enabled && state == SplashStates.menuState){
             
-            guiNode.detachAllChildren();
-            Picture pic = new Picture("HUD Picture");
-            pic.setImage(assetManager, "Interface/background.png", true);
-            pic.setWidth(settings.getWidth()/2);
-            pic.setHeight(settings.getHeight()/2);
-            pic.setPosition(settings.getWidth()/4, settings.getHeight()/4);
-            guiNode.attachChild(pic);
-            System.out.println("PausedState enabled");
-            
-            //TODO: make pause menu
-
-        
+            //TODO: Write code
+     
         ActionListener actionListener = new ActionListener() {
-            float x = 0;
-            float y = 0;
             
             public void onAction(String name, boolean keyPressed, float tpf) {
-                 if ("Pause Game".equals(name) && !keyPressed || "Exit".equals(name) && !keyPressed) {
-                     PausedState.this.stateManager.getState(RunningState.class).setEnabled(true);
-                     guiNode.detachAllChildren();
-                     System.out.println("PausedState disabled");
-                     inputManager.removeListener(this);
+                 if ("Pause Game".equals(name) && !keyPressed){}
+                 if ("Drop Block".equals(name) && !keyPressed) 
+                 {
+                     stateManager.getState(RunningState.class).setEnabled(true);
                      setEnabled(false);
                  }
                  if ("Move Block Left".equals(name) && !keyPressed){}
                  if ("Move Block Right".equals(name) && !keyPressed){}
-                 if ("Move Block Up".equals(name) && !keyPressed){}   
+                 if ("Move Block Up".equals(name) && !keyPressed){}
                  if ("Move Block Down".equals(name) && !keyPressed){}
-              }
-            };
+                 if ("Exit".equals(name) && !keyPressed) app.stop();
+            }
+        };
         
         inputManager.addListener(actionListener, new String[]{"Pause Game","Drop Block","Move Block Right", 
-                                                            "Move Block Left", "Move Block Up", "Move Block Down"});
-        
+                                                            "Move Block Left", "Move Block Up", "Move Block Down", "Exit"});
         }
         else{
-            //TODO: Write code
+           
         }
+            
     }
 
     @Override
     public void update(float tpf) {
+        switch (state)
+        {
+            case splashState:
+                //TODO: animation code change state to menuState
+            case menuState:
+                //Todo: GUI code
+        }
         super.update(tpf);
-    }
-    
-    public void setSettings(AppSettings s) {
-        this.settings = s;
     }
     
 }
