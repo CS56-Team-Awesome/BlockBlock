@@ -8,6 +8,7 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
 import com.jme3.input.InputManager;
 import com.jme3.input.controls.ActionListener;
+import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
@@ -50,9 +51,16 @@ public class RunningState extends AbstractAppState {
         
         setEnabled(false);
         System.out.println("RunningState Initialized");
-        viewPort.setBackgroundColor(ColorRGBA.White);
+        //viewPort.setBackgroundColor(ColorRGBA.White);
         //TODO: init real background
         //TODO: init post processing graphics
+        
+        //generate the grid
+        GridFactory gf = new GridFactory(rootNode, assetManager, 10);
+        //load a light
+        AmbientLight al = new AmbientLight();
+        al.setColor(ColorRGBA.White.mult(3));
+        rootNode.addLight(al);
     }
 
     @Override

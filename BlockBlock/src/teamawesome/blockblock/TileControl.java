@@ -46,7 +46,7 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
 
     @Override
     protected void controlRender(RenderManager rm, ViewPort vp) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public Control cloneForSpatial(Spatial spatial) {

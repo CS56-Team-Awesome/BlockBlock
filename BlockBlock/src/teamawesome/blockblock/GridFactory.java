@@ -15,22 +15,18 @@ import com.jme3.scene.Spatial;
  */
 public class GridFactory {
 
-    //private Node rootNode;
+    
     private Node gridNode;
-    //private AssetManager assetManager;
-    //private int gridSize;
+    private static final float GRID_SPACE = 1.4f;
     
     public GridFactory(Node rootNode, AssetManager assetManager, int gridSize) {
-//        this.rootNode = rootNode;
-//        this.assetManager = assetManager;
-//        this.gridSize = gridSize;
         
         //make gridNode, attached to rootNode
         //attach gridControl to gridNode
         gridNode = new Node("gridNode");
         gridNode.addControl(new GridControl(gridSize, gridSize, new Cursor()));
         rootNode.attachChild(gridNode);
-        gridNode.center();
+        gridNode.move(-6f, -6f, 0);
         
         /* make a tile, attach tile control
          * attach to gridNode
@@ -43,19 +39,15 @@ public class GridFactory {
                 Spatial tile = assetManager.loadModel("Models/Tile.j3o");
                 tile.setName("Tile" + i + "_" + j);
                 Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-                mat.setBoolean("UseMaterialColors",true); 
+                //mat.setBoolean("UseMaterialColors",true); 
                 mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_blue.png"));
                 mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
                 tile.setMaterial(mat);
                 tile.addControl(new TileControl());
                 gridNode.attachChild(tile);
                 gridNode.getControl(GridControl.class).getGrid()[i][j] = tile;
-                //this is the position to move from instancing at gridNode center
-                //for now just j and i, add offsets to them when that is figured out
-                tile.move(j, i, 0);
-                
+                tile.move(j*GRID_SPACE, i*GRID_SPACE, 0);
             } //end inner loop
         } //end outer loop
     }
-    
 }

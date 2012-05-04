@@ -62,27 +62,23 @@ public class SplashState extends AbstractAppState {
             
             //TODO: Write code
      
-        ActionListener actionListener = new ActionListener() {
-            
+        ActionListener actionListener = new ActionListener() {  
             public void onAction(String name, boolean keyPressed, float tpf) {
-                 if ("Pause Game".equals(name) && !keyPressed){}
-                 if ("Drop Block".equals(name) && !keyPressed) 
-                 {
+                 if ("Pause Game".equals(name) && !keyPressed) {}
+                 if ("Drop Block".equals(name) && !keyPressed) {
                      stateManager.getState(RunningState.class).setEnabled(true);
                      setEnabled(false);
                  }
-                 if ("Move Block Left".equals(name) && !keyPressed){}
-                 if ("Move Block Right".equals(name) && !keyPressed){}
-                 if ("Move Block Up".equals(name) && !keyPressed){}
-                 if ("Move Block Down".equals(name) && !keyPressed){}
+                 if ("Move Block Left".equals(name) && !keyPressed) {}
+                 if ("Move Block Right".equals(name) && !keyPressed) {}
+                 if ("Move Block Up".equals(name) && !keyPressed) {}
+                 if ("Move Block Down".equals(name) && !keyPressed) {}
                  if ("Exit".equals(name) && !keyPressed) app.stop();
             }
         };
-        
-        inputManager.addListener(actionListener, new String[]{"Pause Game","Drop Block","Move Block Right", 
-                                                            "Move Block Left", "Move Block Up", "Move Block Down", "Exit"});
+        inputManager.addListener(actionListener, new String[]{"Pause Game", "Drop Block", "Move Block Right", "Move Block Left", "Move Block Up", "Move Block Down", "Exit"});
         }
-        else{
+        else {
            
         }
             
@@ -90,12 +86,11 @@ public class SplashState extends AbstractAppState {
 
     @Override
     public void update(float tpf) {
-        switch (state)
-        {
-            case splashState:
-                //TODO: animation code change state to menuState
-            case menuState:
-                //Todo: GUI code
+        switch (state) {
+        case splashState:
+            //TODO: animation code change state to menuState
+        case menuState:
+            //Todo: GUI code
         }
         super.update(tpf);
     }

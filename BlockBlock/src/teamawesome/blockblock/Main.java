@@ -43,7 +43,7 @@ public class Main extends SimpleApplication {
         Node blockNode = new Node("blockNode");
         rootNode.attachChild(blockNode);
         
-        cam.setLocation(new Vector3f(0,0,50));
+        cam.setLocation(new Vector3f(0,0,20));
         
         inputManager.clearMappings();
         inputManager.addMapping("Exit", new KeyTrigger(KeyInput.KEY_ESCAPE));

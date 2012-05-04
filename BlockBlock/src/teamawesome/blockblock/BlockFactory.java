@@ -32,45 +32,45 @@ public class BlockFactory {
         /*--------------------generate block----------------------------------*/ 
         block = assetManager.loadModel("Models/Block.j3o");
         block.setName("Block" + blockCount++);
-        Material mat_stl = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-        mat_stl.setBoolean("UseMaterialColors",true); 
+        Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        mat.setBoolean("UseMaterialColors",true);
         
         switch(color) {
         case Red: 
-            mat_stl.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_red.png"));
+            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_red.png"));
             block.addControl(new RedBlockControl());
             break;
         case Blue: 
-            mat_stl.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_blue.png"));
+            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new BlueBlockControl());
             break;
         case Black: 
-            mat_stl.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_black.png"));
+            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_black.png"));
             block.addControl(new BlackBlockControl());
             break;
         case Yellow: 
-            mat_stl.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_yellow.png"));
+            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_yellow.png"));
             block.addControl(new YellowBlockControl());
             break;
         case Green: 
-            mat_stl.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_green.png"));
+            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_green.png"));
             block.addControl(new GreenBlockControl());
             break;
         case Grey: 
-            mat_stl.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_grey.png")); 
+            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_grey.png")); 
             block.addControl(new GreyBlockControl());
             break;
         case Orange: 
-            mat_stl.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_orange.png"));
+            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_orange.png"));
             block.addControl(new OrangeBlockControl());
             break;
         case Rainbow: 
-            mat_stl.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_orange.png"));
+            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_orange.png"));
             block.addControl(new RainbowBlockControl());
             break;   
         }
         
-        block.setMaterial(mat_stl);
+        block.setMaterial(mat);
         this.blockNode.attachChild(block);
         //set position?
     }
