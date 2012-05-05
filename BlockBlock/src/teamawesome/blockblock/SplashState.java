@@ -49,8 +49,10 @@ public class SplashState extends AbstractAppState {
         this.inputManager = this.app.getInputManager();
         this.viewPort     = this.app.getViewPort();
         
-        setEnabled(true);
-        state = SplashStates.splashState;
+        
+        state = SplashStates.menuState;
+        this.setEnabled(true);
+        //state = SplashStates.splashState;
         //TODO: make splash screen animation and menu
         
     }
@@ -59,8 +61,10 @@ public class SplashState extends AbstractAppState {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         if(enabled && state == SplashStates.menuState){
+
+            System.out.println("HELLO HELLO!!!");
             
-            //TODO: Write code
+           //TODO: Write code
      
         ActionListener actionListener = new ActionListener() {  
             public void onAction(String name, boolean keyPressed, float tpf) {
@@ -76,7 +80,9 @@ public class SplashState extends AbstractAppState {
                  if ("Exit".equals(name) && !keyPressed) app.stop();
             }
         };
+        
         inputManager.addListener(actionListener, new String[]{"Pause Game", "Drop Block", "Move Block Right", "Move Block Left", "Move Block Up", "Move Block Down", "Exit"});
+        
         }
         else {
            
