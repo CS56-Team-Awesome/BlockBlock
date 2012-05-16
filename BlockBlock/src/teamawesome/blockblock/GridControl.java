@@ -18,13 +18,15 @@ import teamawesome.blockblock.BlockControl.Color;
  */
 public class GridControl extends AbstractControl implements Savable, Cloneable {
     /*-------------------------------Fields-----------------------------------*/
-    Spatial[][] grid;
-    Cursor cursor;
-    int gridX, gridY;
+    private Spatial[][] grid;
+    private Cursor cursor;
+    private Color[] colorArray;
+    private int gridX, gridY;
     /*-------------------------------Constructor------------------------------*/
-    public GridControl(int gridX, int gridY, Cursor cursor) {
+    public GridControl(int gridX, int gridY, Cursor cursor, Color [] colorArray) {
         this.grid = new Spatial[gridX][gridY];
         this.cursor = cursor;
+        this.colorArray = colorArray;
         this.gridX = gridX;
         this.gridY = gridY;
     }

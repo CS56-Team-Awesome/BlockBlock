@@ -8,6 +8,7 @@ import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import teamawesome.blockblock.BlockControl.Color;
 
 /**
  *
@@ -19,12 +20,12 @@ public class GridFactory {
     private Node gridNode;
     private static final float GRID_SPACE = 1.4f;
     
-    public GridFactory(Node rootNode, AssetManager assetManager, int gridSizeX, int gridSizeY) {
+    public GridFactory(Node rootNode, AssetManager assetManager, int gridSizeX, int gridSizeY, Color [] colorArray) {
         
         //make gridNode, attached to rootNode
         //attach gridControl to gridNode
         gridNode = new Node("gridNode");
-        gridNode.addControl(new GridControl(gridSizeX, gridSizeY, new Cursor(gridSizeX, gridSizeY)));
+        gridNode.addControl(new GridControl(gridSizeX, gridSizeY, new Cursor(gridSizeX, gridSizeY), colorArray));
         rootNode.attachChild(gridNode);
         gridNode.move(-6f, -6f, 0);
         

@@ -29,6 +29,7 @@ public class RunningState extends AbstractAppState {
     private InputManager      inputManager;
     private ViewPort          viewPort;
     private Camera            cam;
+    private Color [] colorArray;
 
     
     public RunningState() {
@@ -56,7 +57,7 @@ public class RunningState extends AbstractAppState {
         //TODO: init post processing graphics
         
         //generate the grid
-        GridFactory gf = new GridFactory(rootNode, assetManager, 10, 10);
+        GridFactory gf = new GridFactory(rootNode, assetManager, 10, 10, colorArray);
         //load a light
         AmbientLight al = new AmbientLight();
         al.setColor(ColorRGBA.White.mult(3));
