@@ -11,6 +11,9 @@ package teamawesome.blockblock;
 public class BlueBlockControl extends BlockControl {
 
     public BlueBlockControl() {
+        setColor(Color.Blue);
+        setState(BlockState.cursorState);
+        //TODO: Points
     }
 
     @Override

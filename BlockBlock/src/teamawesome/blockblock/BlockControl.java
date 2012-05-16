@@ -54,13 +54,13 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
         //TODO: code here
         switch (state){
             case idleState:
-                //TODO: idle state code
+                
             case clearingState:
                 //TODO: clearing animation code then change to killState
             case killState:
-                //TODO: detatch from graph
+                spatial.getParent().detachChild(spatial);
             case cursorState:
-                //TODO: get x, y pos from cursor, from gridControl
+                //TODO: Make init state
             case dropState:
                 //TODO: dropping block animation
         }

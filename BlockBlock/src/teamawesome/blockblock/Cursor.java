@@ -13,9 +13,10 @@ public class Cursor {
     private int x;
     private int y;
     
-    Cursor()
+    Cursor(int x, int y)
     {
-        //TODO: set to center of grid.....Write code
+        this.x = x/2;
+        this.y = y/2;
     }
 
     public int getX() {
