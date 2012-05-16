@@ -20,7 +20,7 @@ public class RainbowBlockControl extends BlockControl {
     protected void controlUpdate(float tpf) {
         switch (state) {
             case rainbowState:
-                //TODO: rainbow code here
+                //TODO: rainbow code here then switch to final color/control and set apropriate state
                 break;
             default:
                 super.controlUpdate(tpf);

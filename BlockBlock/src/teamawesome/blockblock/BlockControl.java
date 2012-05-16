@@ -51,18 +51,22 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     
     @Override
     protected void controlUpdate(float tpf) {
-        //TODO: code here
+        
         switch (state){
             case idleState:
-                
+                break;
             case clearingState:
                 //TODO: clearing animation code then change to killState
+                break;
             case killState:
                 spatial.getParent().detachChild(spatial);
+                break;
             case cursorState:
                 //TODO: Make init state
+                break;
             case dropState:
-                //TODO: dropping block animation
+                //TODO: dropping block animation then change to apropriate state
+                break;
         }
     }
 

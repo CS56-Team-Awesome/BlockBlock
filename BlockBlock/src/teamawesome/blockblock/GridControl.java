@@ -10,6 +10,7 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 import java.util.ArrayList;
+import teamawesome.blockblock.BlockControl.Color;
 
 /**
  *
@@ -56,8 +57,8 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         return adjList;
     }
     
-    public void placeBlock(int x, int y, Spatial block) {
-        //TODO: code here
+    public void placeBlock(Color color) {
+        //TODO: Block Fatory(takes position and color), then change state to drop and drop animation will happen
     }
     
     /*-------------------------------Overrides--------------------------------*/

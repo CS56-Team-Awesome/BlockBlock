@@ -11,7 +11,7 @@ package teamawesome.blockblock;
 public class YellowBlockControl extends BlockControl {
 
     public YellowBlockControl() {
-        setColor(Color.Black);
+        setColor(Color.Yellow);
         setState(BlockState.cursorState);
         //TODO: Points
     }

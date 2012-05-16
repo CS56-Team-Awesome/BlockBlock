@@ -41,7 +41,14 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
     
     @Override
     protected void controlUpdate(float tpf) {
-        //TODO: state switch here
+        switch(tileState){
+            case idleState:
+                //TODO:  (check if it is glowing then) reverse glow
+                break;
+            case cursorState:
+                //TODO: change to glow 
+                break;
+        }
     }
 
     @Override
