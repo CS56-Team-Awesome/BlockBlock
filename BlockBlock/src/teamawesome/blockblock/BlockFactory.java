@@ -22,7 +22,7 @@ public class BlockFactory {
     private Node blockNode;
     private AssetManager assetManager;
     private Spatial block;
-    public static int blockCount;
+    public static int blockCount = 0;
     
     
     public BlockFactory(Spatial blockNode, AssetManager assetManager, Color color) {
@@ -32,16 +32,20 @@ public class BlockFactory {
         /*--------------------generate block----------------------------------*/ 
         block = assetManager.loadModel("Models/Block.j3o");
         block.setName("Block" + blockCount++);
-        Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        //Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+        Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         mat.setBoolean("UseMaterialColors",true);
         
         switch(color) {
         case Red: 
             mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_red.png"));
+            
             block.addControl(new RedBlockControl());
             break;
         case Blue: 
-            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_blue.png"));
+            //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_blue.png"));
+            mat.setColor("Blue", ColorRGBA.Blue);
+            //mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new BlueBlockControl());
             break;
         case Black: 
@@ -72,7 +76,7 @@ public class BlockFactory {
         
         block.setMaterial(mat);
         this.blockNode.attachChild(block);
-        //set position?
+        block.move(0, 0, 2);
     }
     
     Spatial getBlock() {

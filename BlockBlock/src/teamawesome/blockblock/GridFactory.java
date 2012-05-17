@@ -25,9 +25,10 @@ public class GridFactory {
         //make gridNode, attached to rootNode
         //attach gridControl to gridNode
         gridNode = new Node("gridNode");
-        gridNode.addControl(new GridControl(gridSizeX, gridSizeY, new Cursor(gridSizeX, gridSizeY), colorArray));
         rootNode.attachChild(gridNode);
+        gridNode.addControl(new GridControl(gridSizeX, gridSizeY, new Cursor(gridSizeX, gridSizeY), colorArray, assetManager, rootNode));
         gridNode.move(-6f, -6f, 0);
+   
         
         /* make a tile, attach tile control
          * attach to gridNode

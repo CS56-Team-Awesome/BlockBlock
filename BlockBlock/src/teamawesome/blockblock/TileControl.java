@@ -21,7 +21,7 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
     
     /*-------------------------------Constructor------------------------------*/
     public TileControl(){
-        
+        this.tileState = TileState.idleState;
     }
     
     /*-------------------------------Gets & Sets------------------------------*/

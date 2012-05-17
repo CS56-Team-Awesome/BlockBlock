@@ -50,6 +50,10 @@ public class RunningState extends AbstractAppState {
         this.inputManager = this.app.getInputManager();
         this.viewPort     = this.app.getViewPort();
         
+        //make blockNode
+        Node blockNode = new Node("blockNode");
+        rootNode.attachChild(blockNode);
+        
         setEnabled(false);
         System.out.println("RunningState Initialized");
         //viewPort.setBackgroundColor(ColorRGBA.White);
@@ -62,6 +66,7 @@ public class RunningState extends AbstractAppState {
         AmbientLight al = new AmbientLight();
         al.setColor(ColorRGBA.White.mult(3));
         rootNode.addLight(al);
+        rootNode.getChild("gridNode").getControl(GridControl.class).placeBlock(Color.Blue);
     }
 
     @Override
