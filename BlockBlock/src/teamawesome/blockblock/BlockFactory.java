@@ -34,7 +34,7 @@ public class BlockFactory {
         block.setName("Block" + blockCount++);
         //Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
-        mat.setBoolean("UseMaterialColors",true);
+        //mat.setBoolean("UseMaterialColors",true);
         
         switch(color) {
         case Red: 
@@ -44,8 +44,8 @@ public class BlockFactory {
             break;
         case Blue: 
             //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_blue.png"));
-            mat.setColor("Blue", ColorRGBA.Blue);
-            //mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
+            //mat.setColor("Color", ColorRGBA.Blue);
+            mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new BlueBlockControl());
             break;
         case Black: 
