@@ -86,7 +86,7 @@ public class RunningState extends AbstractAppState {
                          setEnabled(false);
                      }
                      if ("Drop Block".equals(name) && !keyPressed) {
-                         (new BlockFactory(rootNode.getChild("blockNode"),assetManager, Color.Red)).getBlock();
+                         (new BlockFactory(rootNode.getChild("blockNode"),assetManager, Color.Blue)).getBlock();
                      }
                      if ("Move Block Left".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(-2.5f, 0f, 0f);
                      if ("Move Block Right".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(2.5f, 0f, 0f);
