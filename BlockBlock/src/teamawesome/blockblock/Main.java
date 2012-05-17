@@ -45,7 +45,6 @@ public class Main extends SimpleApplication {
         
         cam.setLocation(new Vector3f(0,0,20));
         
-        
         inputManager.clearMappings();
         inputManager.addMapping("Exit", new KeyTrigger(KeyInput.KEY_ESCAPE));
         inputManager.addMapping("Move Block Down", new KeyTrigger(KeyInput.KEY_DOWN), new KeyTrigger(KeyInput.KEY_S));

@@ -71,6 +71,7 @@ public class SplashState extends AbstractAppState {
                  if ("Pause Game".equals(name) && !keyPressed) {}
                  if ("Drop Block".equals(name) && !keyPressed) {
                      stateManager.getState(RunningState.class).setEnabled(true);
+                     inputManager.removeListener(this);
                      setEnabled(false);
                  }
                  if ("Move Block Left".equals(name) && !keyPressed) {}
