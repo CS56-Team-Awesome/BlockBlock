@@ -38,38 +38,51 @@ public class BlockFactory {
         
         switch(color) {
         case Red: 
-            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_red.png"));
-            
+            //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_red.png"));
+            mat.setColor("Color", ColorRGBA.Red);
+            mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new RedBlockControl());
             break;
         case Blue: 
             //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_blue.png"));
-            //mat.setColor("Color", ColorRGBA.Blue);
+            mat.setColor("Color", ColorRGBA.Blue);
             mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new BlueBlockControl());
             break;
         case Black: 
-            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_black.png"));
+            //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_black.png"));
+            mat.setColor("Color", ColorRGBA.Black);
+            mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new BlackBlockControl());
             break;
         case Yellow: 
-            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_yellow.png"));
+            //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_yellow.png"));
+            mat.setColor("Color", ColorRGBA.Yellow);
+            mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new YellowBlockControl());
             break;
         case Green: 
-            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_green.png"));
+            //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_green.png"));
+            mat.setColor("Color", ColorRGBA.Green);
+            mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new GreenBlockControl());
             break;
         case Grey: 
-            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_grey.png")); 
+            //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_grey.png")); 
+            mat.setColor("Color", ColorRGBA.Gray);
+            mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new GreyBlockControl());
             break;
         case Orange: 
-            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_orange.png"));
+            //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_orange.png"));
+            mat.setColor("Color", ColorRGBA.Orange);
+            mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new OrangeBlockControl());
             break;
         case Rainbow: 
-            mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_orange.png"));
+            //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_orange.png"));
+            mat.setColor("Color", ColorRGBA.Orange);
+            mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new RainbowBlockControl());
             break;   
         }
