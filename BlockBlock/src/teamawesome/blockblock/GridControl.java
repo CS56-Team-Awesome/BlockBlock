@@ -47,13 +47,6 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         colorArray.push(Color.Red);
         colorArray.push(Color.Yellow);
         
-        
-        for(int i = 0; i < gridX; i++ ) {
-            for(int j = 0; j < gridY; j++ )
-                grid[i][j] = null;
-        }
-        
-        //System.out.println("\n\n\n\n" + spatial.getParent().getName() + "\n\n\n\n");
     }
     /*-------------------------------Gets & Sets------------------------------*/
 
@@ -63,8 +56,10 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     
     public void moveCursor(int x, int y) {
         if( !((cursor.getX()+x >= 0 && cursor.getX()+x < gridX) && (cursor.getY()+y >= 0 && cursor.getY()+y < gridY))) return;
-        //if(grid[x][y].getControl(BlockControl.class).getColor() == Color.Grey) return; check for colored BlockControl.class
-        System.out.println("\n\n\n\n\n\n poop \n\n\n\n\n\n");
+        //TODO: Make X and Y correct so everthing else works     System.out.println("\n\n\n\n\n\n" + grid[x][y] + "\n\n\n\n\n\n");
+        
+        //if(grid[x][y] != null && grid[x][y].getControl(BlockControl.class).getColor() == Color.Grey) return; 
+        
         ((Node)spatial).getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getControl(TileControl.class).setTileState(TileControl.TileState.idleState);
         cursor.setX(cursor.getX() + x);
         cursor.setY(cursor.getY() + y);
@@ -90,7 +85,8 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     }
     
     public void placeBlock() {
-        //if(grid[cursor.getY()][cursor.getX()] != null) return;
+        System.out.println("\n\n\n\n\n\n" + grid[cursor.getX()][cursor.getY()] + "\n\n\n\n\n\n");
+        if(grid[cursor.getX()][cursor.getY()] != null) return;
         Color color;
         if (!colorArray.empty()) color = colorArray.pop();
         else color = Color.Green;
@@ -125,6 +121,8 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
             bf.getBlock().getControl(RainbowBlockControl.class).setState(BlockControl.BlockState.dropState);
             break;
         }
+        
+        //TODO: Make AdjList work     System.out.println("\n\n\n\n\n\n" + getAdjacent() + "\n\n\n\n\n\n");
     }
     
     /*-------------------------------Overrides--------------------------------*/
