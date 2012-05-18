@@ -12,9 +12,14 @@ import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
+import com.jme3.post.FilterPostProcessor;
+import com.jme3.post.filters.BloomFilter;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 import teamawesome.blockblock.BlockControl.Color;
 
 
@@ -31,7 +36,7 @@ public class RunningState extends AbstractAppState {
     private InputManager      inputManager;
     private ViewPort          viewPort;
     private Camera            cam;
-    private Color [] colorArray;
+    private Stack<Color> colorArray;
 
     
     public RunningState() {
@@ -51,6 +56,8 @@ public class RunningState extends AbstractAppState {
         this.stateManager = this.app.getStateManager();
         this.inputManager = this.app.getInputManager();
         this.viewPort     = this.app.getViewPort();
+        this.colorArray   = new Stack<Color>();
+        
         
         //make blockNode
         Node blockNode = new Node("blockNode");
@@ -68,6 +75,14 @@ public class RunningState extends AbstractAppState {
         AmbientLight al = new AmbientLight();
         al.setColor(ColorRGBA.White.mult(3));
         rootNode.addLight(al);
+        
+        //bloomeffect
+        FilterPostProcessor fpp=new FilterPostProcessor(assetManager);
+        BloomFilter bf=new BloomFilter(BloomFilter.GlowMode.Objects);
+        bf.setBloomIntensity(5.0f);
+        bf.setExposurePower(1.8f);
+        fpp.addFilter(bf);
+        viewPort.addProcessor(fpp);
     }
 
     @Override
@@ -95,7 +110,7 @@ public class RunningState extends AbstractAppState {
                          setEnabled(false);
                      }
                      if ("Drop Block".equals(name) && !keyPressed) {
-                         rootNode.getChild("gridNode").getControl(GridControl.class).placeBlock(Color.Red);
+                         rootNode.getChild("gridNode").getControl(GridControl.class).placeBlock();
                      }
                      if ("Move Block Left".equals(name) && !keyPressed) rootNode.getChild("gridNode").getControl(GridControl.class).moveCursor(-1, 0);
                      if ("Move Block Right".equals(name) && !keyPressed) rootNode.getChild("gridNode").getControl(GridControl.class).moveCursor(1, 0);

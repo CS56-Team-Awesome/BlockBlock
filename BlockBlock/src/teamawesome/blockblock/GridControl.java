@@ -13,6 +13,8 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 import teamawesome.blockblock.BlockControl.Color;
 
 /**
@@ -23,12 +25,12 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     /*-------------------------------Fields-----------------------------------*/
     private Spatial[][] grid;
     private Cursor cursor;
-    private Color[] colorArray;
+    private Stack<Color> colorArray ;
     private int gridX, gridY;
     private Spatial blockNode;
     private AssetManager assetManager;
     /*-------------------------------Constructor------------------------------*/
-    public GridControl(int gridX, int gridY, Cursor cursor, Color [] colorArray, AssetManager assetManager, Node rootNode) {
+    public GridControl(int gridX, int gridY, Cursor cursor, Stack<Color> colorArray, AssetManager assetManager, Node rootNode) {
         this.grid = new Spatial[gridX][gridY];
         this.cursor = cursor;
         this.colorArray = colorArray;
@@ -36,6 +38,21 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         this.gridY = gridY;
         this.blockNode = rootNode.getChild("blockNode");
         this.assetManager = assetManager;
+        
+        colorArray.push(Color.Black);
+        colorArray.push(Color.Blue);
+        colorArray.push(Color.Green);
+        colorArray.push(Color.Grey);
+        colorArray.push(Color.Orange);
+        colorArray.push(Color.Red);
+        colorArray.push(Color.Yellow);
+        
+        
+        for(int i = 0; i < gridX; i++ )
+        {
+            for(int j = 0; j < gridY; j++ )
+                grid[i][j] = null;
+        }
         
         //System.out.println("\n\n\n\n" + spatial.getParent().getName() + "\n\n\n\n");
     }
@@ -74,7 +91,12 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         return adjList;
     }
     
-    public void placeBlock(Color color) {
+    public void placeBlock() {
+        //if(grid[cursor.getY()][cursor.getX()] != null) return;
+        Color color;
+        if (!colorArray.empty()) color = colorArray.pop();
+        else color = Color.Green;
+        
         BlockFactory bf = new BlockFactory(blockNode, assetManager, color);
         grid[cursor.getX()][cursor.getY()] = bf.getBlock();
         bf.getBlock().setLocalTranslation(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getWorldTranslation());
