@@ -17,15 +17,14 @@ import com.jme3.scene.control.Control;
 public class BlockControl extends AbstractControl implements Savable, Cloneable {
     
     /*-------------------------------Fields-----------------------------------*/
-    public enum BlockState { idleState, clearingState, killState, cursorState, dropState, explodeState, rainbowState, 
-                             countDownState, rotateState, poisonState, antidoteState };
+    public enum BlockState { idleState, clearingState, killState, cursorState, dropState, explodeState, rainbowState, countDownState, rotateState, poisonState, antidoteState };
     public enum Color { Red, Blue, Black, Yellow, Green, Grey, Orange, Rainbow };
     protected BlockState state;
     private Color color;
     private int points;
     
     /*-------------------------------Constructor------------------------------*/
-    public BlockControl(){
+    public BlockControl() {
         state = BlockState.idleState;
     }
     
@@ -52,25 +51,25 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     @Override
     protected void controlUpdate(float tpf) {
         
-        switch (state){
-            case idleState:
-                break;
-            case clearingState:
-                //TODO: clearing animation code then change to killState
-                break;
-            case killState:
-                spatial.getParent().detachChild(spatial);
-                break;
-            case cursorState:
-                //TODO: Make init state
-                break;
-            case dropState:
-                if(spatial.getLocalTranslation().getZ() >= 0)
-                    spatial.move(0, 0, -.1f);
-                else
-                    this.state = BlockState.idleState;
-                //TODO: dropping block animation then change to apropriate state
-                break;
+        switch (state) {
+        case idleState:
+            break;
+        case clearingState:
+            //TODO: clearing animation code then change to killState
+            break;
+        case killState:
+            spatial.getParent().detachChild(spatial);
+            break;
+        case cursorState:
+            //TODO: Make init state
+            break;
+        case dropState:
+            if(spatial.getLocalTranslation().getZ() >= 0)
+                spatial.move(0, 0, -.1f);
+            else
+                this.state = BlockState.idleState;
+            //TODO: dropping block animation then change to apropriate state
+            break;
         }
     }
 

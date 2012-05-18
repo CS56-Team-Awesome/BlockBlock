@@ -13,8 +13,7 @@ public class Cursor {
     private int x;
     private int y;
     
-    Cursor(int x, int y)
-    {
+    Cursor(int x, int y) {
         this.x = x/2;
         this.y = y/2;
     }

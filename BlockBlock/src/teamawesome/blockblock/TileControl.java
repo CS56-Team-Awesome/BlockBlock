@@ -28,7 +28,7 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
     private Material mat;
     
     /*-------------------------------Constructor------------------------------*/
-    public TileControl(AssetManager assetManager){
+    public TileControl(AssetManager assetManager) {
         this.tileState = TileState.idleState;
         this.previousState = TileState.idleState;
         this.assetManager = assetManager;
@@ -51,9 +51,9 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
     
     @Override
     protected void controlUpdate(float tpf) {
-        switch(tileState){
+        switch(tileState) {
             case cursorState:
-                if(previousState != TileState.cursorState){
+                if(previousState != TileState.cursorState) {
                     mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
                     mat.setColor("Color", ColorRGBA.Red);
                     mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
@@ -63,12 +63,12 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
                 //TODO:  (check if it is glowing then) reverse glow
                 break;
             case idleState:
-                if(previousState != TileState.idleState){
-                mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-                //mat.setBoolean("UseMaterialColors",true); 
-                mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_blue.png"));
-                mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
-                spatial.setMaterial(mat);
+                if(previousState != TileState.idleState) {
+                    mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
+                    //mat.setBoolean("UseMaterialColors",true); 
+                    mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_blue.png"));
+                    mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
+                    spatial.setMaterial(mat);
                 }
                 previousState = tileState;
                 //TODO: change to glow 

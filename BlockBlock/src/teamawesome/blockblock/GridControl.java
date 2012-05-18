@@ -48,8 +48,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         colorArray.push(Color.Yellow);
         
         
-        for(int i = 0; i < gridX; i++ )
-        {
+        for(int i = 0; i < gridX; i++ ) {
             for(int j = 0; j < gridY; j++ )
                 grid[i][j] = null;
         }
@@ -62,8 +61,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
 
     public void setCursor(Cursor cursor) { this.cursor = cursor; }
     
-    public void moveCursor(int x, int y)
-    {
+    public void moveCursor(int x, int y) {
         if( !((cursor.getX()+x >= 0 && cursor.getX()+x < gridX) && (cursor.getY()+y >= 0 && cursor.getY()+y < gridY))) return;
         //if(grid[x][y].getControl(BlockControl.class).getColor() == Color.Grey) return; check for colored BlockControl.class
         System.out.println("\n\n\n\n\n\n poop \n\n\n\n\n\n");
@@ -101,32 +99,31 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         grid[cursor.getX()][cursor.getY()] = bf.getBlock();
         bf.getBlock().setLocalTranslation(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getWorldTranslation());
         bf.getBlock().move(0, 0, 25);
-        switch (color)
-        {
-            case Red: 
-                bf.getBlock().getControl(RedBlockControl.class).setState(BlockControl.BlockState.dropState);
-                break;
-            case Blue: 
-                bf.getBlock().getControl(BlueBlockControl.class).setState(BlockControl.BlockState.dropState);
-                break;
-            case Black: 
-                bf.getBlock().getControl(BlackBlockControl.class).setState(BlockControl.BlockState.dropState);
-                break;
-            case Yellow: 
-                bf.getBlock().getControl(YellowBlockControl.class).setState(BlockControl.BlockState.dropState);
-                break;
-            case Green: 
-                bf.getBlock().getControl(GreenBlockControl.class).setState(BlockControl.BlockState.dropState);
-                break;
-            case Grey: 
-                bf.getBlock().getControl(GreyBlockControl.class).setState(BlockControl.BlockState.dropState);
-                break;
-            case Orange: 
-                bf.getBlock().getControl(OrangeBlockControl.class).setState(BlockControl.BlockState.dropState);
-                break;
-            case Rainbow: 
-                bf.getBlock().getControl(RainbowBlockControl.class).setState(BlockControl.BlockState.dropState);
-                break;
+        switch (color) {
+        case Red: 
+            bf.getBlock().getControl(RedBlockControl.class).setState(BlockControl.BlockState.dropState);
+            break;
+        case Blue: 
+            bf.getBlock().getControl(BlueBlockControl.class).setState(BlockControl.BlockState.dropState);
+            break;
+        case Black: 
+            bf.getBlock().getControl(BlackBlockControl.class).setState(BlockControl.BlockState.dropState);
+            break;
+        case Yellow: 
+            bf.getBlock().getControl(YellowBlockControl.class).setState(BlockControl.BlockState.dropState);
+            break;
+        case Green: 
+            bf.getBlock().getControl(GreenBlockControl.class).setState(BlockControl.BlockState.dropState);
+            break;
+        case Grey: 
+            bf.getBlock().getControl(GreyBlockControl.class).setState(BlockControl.BlockState.dropState);
+            break;
+        case Orange: 
+            bf.getBlock().getControl(OrangeBlockControl.class).setState(BlockControl.BlockState.dropState);
+            break;
+        case Rainbow: 
+            bf.getBlock().getControl(RainbowBlockControl.class).setState(BlockControl.BlockState.dropState);
+            break;
         }
     }
     
