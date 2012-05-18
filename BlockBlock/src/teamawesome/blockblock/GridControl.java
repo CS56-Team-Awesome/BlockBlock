@@ -5,6 +5,7 @@ package teamawesome.blockblock;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.export.Savable;
+import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
@@ -43,6 +44,18 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     public Cursor getCursor() { return cursor; }
 
     public void setCursor(Cursor cursor) { this.cursor = cursor; }
+    
+    public void moveCursor(int x, int y)
+    {
+        if( !((cursor.getX()+x >= 0 && cursor.getX()+x < gridX) && (cursor.getY()+y >= 0 && cursor.getY()+y < gridY))) return;
+        //if(grid[x][y].getControl(BlockControl.class).getColor() == Color.Grey) return; check for colored BlockControl.class
+        System.out.println("\n\n\n\n\n\n poop \n\n\n\n\n\n");
+        ((Node)spatial).getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getControl(TileControl.class).setTileState(TileControl.TileState.idleState);
+        cursor.setX(cursor.getX() + x);
+        cursor.setY(cursor.getY() + y);
+        ((Node)spatial).getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getControl(TileControl.class).setTileState(TileControl.TileState.cursorState);
+        
+    }
 
     public Spatial[][] getGrid() { return grid; }
 
@@ -63,7 +76,36 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     
     public void placeBlock(Color color) {
         BlockFactory bf = new BlockFactory(blockNode, assetManager, color);
-        //TODO: Block Fatory(takes position and color), then change state to drop and drop animation will happen
+        grid[cursor.getX()][cursor.getY()] = bf.getBlock();
+        bf.getBlock().setLocalTranslation(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getWorldTranslation());
+        bf.getBlock().move(0, 0, 25);
+        switch (color)
+        {
+            case Red: 
+                bf.getBlock().getControl(RedBlockControl.class).setState(BlockControl.BlockState.dropState);
+                break;
+            case Blue: 
+                bf.getBlock().getControl(BlueBlockControl.class).setState(BlockControl.BlockState.dropState);
+                break;
+            case Black: 
+                bf.getBlock().getControl(BlackBlockControl.class).setState(BlockControl.BlockState.dropState);
+                break;
+            case Yellow: 
+                bf.getBlock().getControl(YellowBlockControl.class).setState(BlockControl.BlockState.dropState);
+                break;
+            case Green: 
+                bf.getBlock().getControl(GreenBlockControl.class).setState(BlockControl.BlockState.dropState);
+                break;
+            case Grey: 
+                bf.getBlock().getControl(GreyBlockControl.class).setState(BlockControl.BlockState.dropState);
+                break;
+            case Orange: 
+                bf.getBlock().getControl(OrangeBlockControl.class).setState(BlockControl.BlockState.dropState);
+                break;
+            case Rainbow: 
+                bf.getBlock().getControl(RainbowBlockControl.class).setState(BlockControl.BlockState.dropState);
+                break;
+        }
     }
     
     /*-------------------------------Overrides--------------------------------*/

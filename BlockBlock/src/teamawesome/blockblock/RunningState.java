@@ -7,7 +7,9 @@ import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
 import com.jme3.input.InputManager;
+import com.jme3.input.KeyInput;
 import com.jme3.input.controls.ActionListener;
+import com.jme3.input.controls.KeyTrigger;
 import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.Camera;
@@ -66,7 +68,6 @@ public class RunningState extends AbstractAppState {
         AmbientLight al = new AmbientLight();
         al.setColor(ColorRGBA.White.mult(3));
         rootNode.addLight(al);
-        rootNode.getChild("gridNode").getControl(GridControl.class).placeBlock(Color.Blue);
     }
 
     @Override
@@ -74,8 +75,16 @@ public class RunningState extends AbstractAppState {
         super.setEnabled(enabled);
         if(enabled) {
             System.out.println("run enabled");
+            inputManager.clearMappings();
+            inputManager.addMapping("Exit", new KeyTrigger(KeyInput.KEY_ESCAPE));
+            inputManager.addMapping("Move Block Down", new KeyTrigger(KeyInput.KEY_DOWN), new KeyTrigger(KeyInput.KEY_S));
+            inputManager.addMapping("Move Block Up", new KeyTrigger(KeyInput.KEY_UP), new KeyTrigger(KeyInput.KEY_W));
+            inputManager.addMapping("Move Block Left", new KeyTrigger(KeyInput.KEY_LEFT), new KeyTrigger(KeyInput.KEY_A));
+            inputManager.addMapping("Move Block Right", new KeyTrigger(KeyInput.KEY_RIGHT), new KeyTrigger(KeyInput.KEY_D));
+            inputManager.addMapping("Drop Block", new KeyTrigger(KeyInput.KEY_SPACE));
+            inputManager.addMapping("Pause Game", new KeyTrigger(KeyInput.KEY_P));
             
-            //TODO: Write code
+            //TODO: Write code and fix mappings
      
             ActionListener actionListener = new ActionListener() {
                 public void onAction(String name, boolean keyPressed, float tpf) {
@@ -86,12 +95,12 @@ public class RunningState extends AbstractAppState {
                          setEnabled(false);
                      }
                      if ("Drop Block".equals(name) && !keyPressed) {
-                         //(new BlockFactory(rootNode.getChild("blockNode"),assetManager, Color.Blue)).getBlock();
+                         rootNode.getChild("gridNode").getControl(GridControl.class).placeBlock(Color.Red);
                      }
-                     if ("Move Block Left".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(-1.4f, 0f, 0f);
-                     if ("Move Block Right".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(1.4f, 0f, 0f);
-                     if ("Move Block Up".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(0f, 1.4f, 0f);
-                     if ("Move Block Down".equals(name) && !keyPressed) rootNode.getChild("blockNode").move(0f, -1.4f, 0f);
+                     if ("Move Block Left".equals(name) && !keyPressed) rootNode.getChild("gridNode").getControl(GridControl.class).moveCursor(-1, 0);
+                     if ("Move Block Right".equals(name) && !keyPressed) rootNode.getChild("gridNode").getControl(GridControl.class).moveCursor(1, 0);
+                     if ("Move Block Up".equals(name) && !keyPressed) rootNode.getChild("gridNode").getControl(GridControl.class).moveCursor(0, 1);
+                     if ("Move Block Down".equals(name) && !keyPressed) rootNode.getChild("gridNode").getControl(GridControl.class).moveCursor(0, -1);
                      if ("Exit".equals(name) && !keyPressed) app.stop();
                 }
             };

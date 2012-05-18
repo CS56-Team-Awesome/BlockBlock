@@ -45,11 +45,12 @@ public class GridFactory {
                 mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_blue.png"));
                 mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
                 tile.setMaterial(mat);
-                tile.addControl(new TileControl());
+                tile.addControl(new TileControl(assetManager));
                 gridNode.attachChild(tile);
                 gridNode.getControl(GridControl.class).getGrid()[i][j] = tile;
-                tile.move(j*GRID_SPACE, i*GRID_SPACE, 0);
+                tile.move(i*GRID_SPACE, j*GRID_SPACE, 0);
             } //end inner loop
         } //end outer loop
+        gridNode.getChild("Tile" + gridSizeX/2 + "_" + gridSizeY/2).getControl(TileControl.class).setTileState(TileControl.TileState.cursorState);
     }
 }

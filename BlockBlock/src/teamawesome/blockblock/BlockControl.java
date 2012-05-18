@@ -26,7 +26,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     
     /*-------------------------------Constructor------------------------------*/
     public BlockControl(){
-    
+        state = BlockState.idleState;
     }
     
     /*-------------------------------Gets & Sets------------------------------*/
@@ -65,6 +65,10 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
                 //TODO: Make init state
                 break;
             case dropState:
+                if(spatial.getLocalTranslation().getZ() >= 0)
+                    spatial.move(0, 0, -.1f);
+                else
+                    this.state = BlockState.idleState;
                 //TODO: dropping block animation then change to apropriate state
                 break;
         }
