@@ -1,5 +1,6 @@
 package teamawesome.blockblock;
 
+import com.jme3.app.FlyCamAppState;
 import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
@@ -45,7 +46,7 @@ public class Main extends SimpleApplication {
         
         cam.setLocation(new Vector3f(0,0,20));
         
-        inputManager.clearMappings();
+        stateManager.detach(stateManager.getState(FlyCamAppState.class));
         inputManager.addMapping("Exit", new KeyTrigger(KeyInput.KEY_ESCAPE));
         inputManager.addMapping("Move Block Down", new KeyTrigger(KeyInput.KEY_DOWN), new KeyTrigger(KeyInput.KEY_S));
         inputManager.addMapping("Move Block Up", new KeyTrigger(KeyInput.KEY_UP), new KeyTrigger(KeyInput.KEY_W));

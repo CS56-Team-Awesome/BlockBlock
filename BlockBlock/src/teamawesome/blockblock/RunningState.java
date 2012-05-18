@@ -77,27 +77,19 @@ public class RunningState extends AbstractAppState {
         rootNode.addLight(al);
         
         //bloomeffect
-        FilterPostProcessor fpp=new FilterPostProcessor(assetManager);
-        BloomFilter bf=new BloomFilter(BloomFilter.GlowMode.Objects);
-        bf.setBloomIntensity(5.0f);
-        bf.setExposurePower(1.8f);
-        fpp.addFilter(bf);
-        viewPort.addProcessor(fpp);
+//        FilterPostProcessor fpp=new FilterPostProcessor(assetManager);
+//        BloomFilter bf=new BloomFilter(BloomFilter.GlowMode.Objects);
+//        bf.setBloomIntensity(5.0f);
+//        bf.setExposurePower(1.8f);
+//        fpp.addFilter(bf);
+//        viewPort.addProcessor(fpp);
     }
 
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         if(enabled) {
-            System.out.println("run enabled");
-            inputManager.clearMappings();
-            inputManager.addMapping("Exit", new KeyTrigger(KeyInput.KEY_ESCAPE));
-            inputManager.addMapping("Move Block Down", new KeyTrigger(KeyInput.KEY_DOWN), new KeyTrigger(KeyInput.KEY_S));
-            inputManager.addMapping("Move Block Up", new KeyTrigger(KeyInput.KEY_UP), new KeyTrigger(KeyInput.KEY_W));
-            inputManager.addMapping("Move Block Left", new KeyTrigger(KeyInput.KEY_LEFT), new KeyTrigger(KeyInput.KEY_A));
-            inputManager.addMapping("Move Block Right", new KeyTrigger(KeyInput.KEY_RIGHT), new KeyTrigger(KeyInput.KEY_D));
-            inputManager.addMapping("Drop Block", new KeyTrigger(KeyInput.KEY_SPACE));
-            inputManager.addMapping("Pause Game", new KeyTrigger(KeyInput.KEY_P));
+            System.out.println("run enabled");           
             
             //TODO: Write code and fix mappings
      
