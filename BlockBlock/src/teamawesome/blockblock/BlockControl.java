@@ -60,7 +60,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
             state = BlockState.killState;
             break;
         case killState:
-            //TODO: fix certain kills...
+            //TODO: fix certain kills...red,orange,and black don't delete when dropping fast and blue can be overidden with other blocks??
             Cursor cursor = spatial.getParent().getParent().getChild("gridNode").getControl(GridControl.class).getCursor();
             spatial.getParent().getParent().getChild("gridNode").getControl(GridControl.class).getGrid()[cursor.getX()][cursor.getY()] = null;
             spatial.getParent().detachChild(spatial);
