@@ -14,6 +14,7 @@ import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Stack;
 import teamawesome.blockblock.BlockControl.Color;
 
@@ -39,13 +40,36 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         this.blockNode = rootNode.getChild("blockNode");
         this.assetManager = assetManager;
         
-        colorArray.push(Color.Black);
-        colorArray.push(Color.Blue);
-        colorArray.push(Color.Green);
-        colorArray.push(Color.Grey);
-        colorArray.push(Color.Orange);
-        colorArray.push(Color.Red);
-        colorArray.push(Color.Yellow);
+        Random rand = new Random();
+        
+        for (int i = 0; i < 100; i++)
+        {
+            int j = rand.nextInt(7);
+            switch (j)
+            {
+                case 0: 
+                    colorArray.push(Color.Black);
+                    break;
+                case 1:
+                    colorArray.push(Color.Blue);
+                    break;
+                case 2:
+                    colorArray.push(Color.Green);
+                    break;
+                case 3:    
+                    colorArray.push(Color.Grey);
+                    break;
+                case 4:
+                    colorArray.push(Color.Orange);
+                    break;
+                case 5:
+                    colorArray.push(Color.Red);
+                    break;
+                case 6:
+                    colorArray.push(Color.Yellow);
+                    break;
+            }
+        }
         
     }
     /*-------------------------------Gets & Sets------------------------------*/
@@ -85,6 +109,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     }
     
     public void placeBlock() {
+        System.out.println(grid[cursor.getX()][cursor.getY()]);
         if(grid[cursor.getX()][cursor.getY()] != null) return;
         Color color;
         if (!colorArray.empty()) color = colorArray.pop();
