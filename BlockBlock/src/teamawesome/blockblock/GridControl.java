@@ -80,9 +80,9 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     
     public void moveCursor(int x, int y) {
         if( !((cursor.getX()+x >= 0 && cursor.getX()+x < gridX) && (cursor.getY()+y >= 0 && cursor.getY()+y < gridY))) return;
-        //TODO: Make X and Y correct so everthing else works     System.out.println("\n\n\n\n\n\n" + grid[x][y] + "\n\n\n\n\n\n");
+        System.out.println("\n\n\n\n\n\n" + grid[cursor.getX()+x][cursor.getY()+y] + "\n\n\n\n\n\n");
         
-        //if(grid[x][y] != null && grid[x][y].getControl(BlockControl.class).getColor() == Color.Grey) return; 
+        if(grid[cursor.getX()+x][cursor.getY()+y] != null && grid[cursor.getX()+x][cursor.getY()+y].getControl(BlockControl.class).getColor() == Color.Grey) return; 
         
         ((Node)spatial).getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getControl(TileControl.class).setTileState(TileControl.TileState.idleState);
         cursor.setX(cursor.getX() + x);
@@ -109,11 +109,14 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     }
     
     public void placeBlock() {
-        System.out.println(grid[cursor.getX()][cursor.getY()]);
+        if(grid[cursor.getX()][cursor.getY()] !=null)
+            System.out.println(grid[cursor.getX()][cursor.getY()].getControl(BlockControl.class).getColor());
+        else
+            System.out.println(grid[cursor.getX()][cursor.getY()]);
         if(grid[cursor.getX()][cursor.getY()] != null) return;
         Color color;
         if (!colorArray.empty()) color = colorArray.pop();
-        else color = Color.Green;
+        else color = Color.Red;
         
         BlockFactory bf = new BlockFactory(blockNode, assetManager, color);
         grid[cursor.getX()][cursor.getY()] = bf.getBlock();

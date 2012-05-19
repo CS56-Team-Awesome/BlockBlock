@@ -60,6 +60,9 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
             state = BlockState.killState;
             break;
         case killState:
+            //TODO: fix certain kills...
+            Cursor cursor = spatial.getParent().getParent().getChild("gridNode").getControl(GridControl.class).getCursor();
+            spatial.getParent().getParent().getChild("gridNode").getControl(GridControl.class).getGrid()[cursor.getX()][cursor.getY()] = null;
             spatial.getParent().detachChild(spatial);
             break;
         case cursorState:
