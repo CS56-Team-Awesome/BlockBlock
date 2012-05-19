@@ -116,7 +116,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         if(grid[cursor.getX()][cursor.getY()] != null) return;
         Color color;
         if (!colorArray.empty()) color = colorArray.pop();
-        else color = Color.Red;
+        else color = Color.Green;
         
         BlockFactory bf = new BlockFactory(blockNode, assetManager, color);
         grid[cursor.getX()][cursor.getY()] = bf.getBlock();
