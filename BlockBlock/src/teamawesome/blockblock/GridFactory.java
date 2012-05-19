@@ -49,6 +49,7 @@ public class GridFactory {
                 tile.setMaterial(mat);
                 tile.addControl(new TileControl(assetManager));
                 gridNode.attachChild(tile);
+                //gridNode.getControl(GridControl.class).getGrid()[i][j] = tile;
                 tile.move(i*GRID_SPACE, j*GRID_SPACE, 0);
             } //end inner loop
         } //end outer loop

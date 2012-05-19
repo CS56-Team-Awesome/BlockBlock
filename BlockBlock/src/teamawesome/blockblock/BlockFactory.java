@@ -51,7 +51,7 @@ public class BlockFactory {
             break;
         case Black: 
             //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_black.png"));
-            mat.setColor("Color", ColorRGBA.Black);
+            mat.setColor("Color", ColorRGBA.White);
             mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_blue.png"));
             block.addControl(new BlackBlockControl());
             break;

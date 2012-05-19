@@ -74,10 +74,10 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     /*-------------------------------Functions--------------------------------*/
     public ArrayList<Spatial> getAdjacent() {
         ArrayList<Spatial> adjList = new ArrayList<Spatial>();
-        for(int i = cursor.getX() - 1;  i < cursor.getX() + 1; i++) {
-            for(int j = cursor.getY() - 1; i < cursor.getY() + 1; j++) {
-                if (i < 0 || i > gridX - 1 ) break;
-                if (j < 0 || j > gridY - 1 || (i == cursor.getX() && j == cursor.getY())) continue;
+        for(int i = cursor.getX() - 1;  i <= cursor.getX() + 1; i++) {
+            for(int j = cursor.getY() - 1; j <= cursor.getY() + 1; j++) {
+                if (!(i >= 0 && i < gridX) ) continue;
+                if ( (!(j >= 0 && j < gridY)) || (i == cursor.getX() && j == cursor.getY())) continue;
                 adjList.add(grid[i][j]);
             }
         }
@@ -85,7 +85,6 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     }
     
     public void placeBlock() {
-        System.out.println("\n\n\n\n\n\n" + grid[cursor.getX()][cursor.getY()] + "\n\n\n\n\n\n");
         if(grid[cursor.getX()][cursor.getY()] != null) return;
         Color color;
         if (!colorArray.empty()) color = colorArray.pop();
@@ -122,7 +121,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
             break;
         }
         
-        //TODO: Make AdjList work     System.out.println("\n\n\n\n\n\n" + getAdjacent() + "\n\n\n\n\n\n");
+        System.out.println("\n\n\n\n\n\n" + getAdjacent() + "\n\n\n\n\n\n");
     }
     
     /*-------------------------------Overrides--------------------------------*/
