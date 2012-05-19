@@ -21,6 +21,7 @@ public class RedBlockControl extends BlockControl {
         switch (state) {
             case explodeState:
                 //TODO: explode code here
+                state = BlockState.killState;
                 break;
             default:
                 super.controlUpdate(tpf);

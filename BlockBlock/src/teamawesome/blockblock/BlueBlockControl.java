@@ -20,7 +20,8 @@ public class BlueBlockControl extends BlockControl {
     protected void controlUpdate(float tpf) {
         switch (state) {
             case explodeState:
-                //TODO: explode code here then killstate
+                //TODO: explode code here
+                state = BlockState.killState;
                 break;  
             default:
                 super.controlUpdate(tpf);

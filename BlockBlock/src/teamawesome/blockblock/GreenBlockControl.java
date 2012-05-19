@@ -20,10 +20,10 @@ public class GreenBlockControl extends BlockControl {
     protected void controlUpdate(float tpf) {
         switch (state) {
             case countDownState:
-                //TODO: countdown State code here
+                //TODO: countdown State code here and switch to appropriate state (grey state?)
                 break;
             case poisonState:
-                //TODO: poison code here
+                //TODO: poison code here no break above cuz poison while counting down?
                 break;
             default:
                 super.controlUpdate(tpf);

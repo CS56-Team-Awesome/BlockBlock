@@ -53,22 +53,51 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
         
         switch (state) {
         case idleState:
+            //TODO: add idle animation?
             break;
         case clearingState:
-            //TODO: clearing animation code then change to killState
+            //TODO: clearing animation code
+            state = BlockState.killState;
             break;
         case killState:
             spatial.getParent().detachChild(spatial);
             break;
         case cursorState:
-            //TODO: Make init state
+            state = BlockState.idleState;
             break;
         case dropState:
             if(spatial.getLocalTranslation().getZ() >= 0)
                 spatial.move(0, 0, -.1f);
             else
-                this.state = BlockState.idleState;
-            //TODO: dropping block animation then change to apropriate state
+            {
+                switch (color)
+                {
+                    case Black: 
+                        state = BlockState.countDownState;
+                        break;
+                    case Blue:
+                        state = BlockState.idleState;
+                        break;
+                    case Green:
+                        state = BlockState.poisonState;
+                        break;
+                    case Grey:    
+                        state = BlockState.idleState;
+                        break;
+                    case Orange:
+                        state = BlockState.antidoteState;
+                        break;
+                    case Red:
+                        state = BlockState.explodeState;
+                        break;
+                    case Yellow:
+                        state = BlockState.rotateState;
+                        break;
+                    case Rainbow:
+                        state = BlockState.rainbowState;
+                        break;
+                }
+            }
             break;
         }
     }

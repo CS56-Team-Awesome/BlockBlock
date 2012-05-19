@@ -12,7 +12,7 @@ public class GreyBlockControl extends BlockControl {
 
     public GreyBlockControl() {
         setColor(Color.Grey);
-        setState(BlockState.cursorState);
+        setState(BlockState.idleState);
         //TODO: Points
     }
 

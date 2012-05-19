@@ -21,6 +21,7 @@ public class OrangeBlockControl extends BlockControl {
         switch (state) {
             case antidoteState:
                 //TODO: antidote code here
+                state = BlockState.clearingState;
                 break;
             default:
                 super.controlUpdate(tpf);

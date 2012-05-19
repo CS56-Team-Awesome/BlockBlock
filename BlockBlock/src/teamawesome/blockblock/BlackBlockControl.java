@@ -20,10 +20,12 @@ public class BlackBlockControl extends BlockControl {
     protected void controlUpdate(float tpf) {
         switch (state) {
             case explodeState:
-                //TODO: explode code here then change to kill state
+                //TODO: explode code here
+                state = BlockState.killState;
                 break;
             case countDownState:
                 //TODO: countdown code
+                state = BlockState.explodeState;
             default:
                 super.controlUpdate(tpf);
         }

@@ -21,6 +21,7 @@ public class YellowBlockControl extends BlockControl {
         switch (state) {
             case rotateState:
                 //TODO: rotate code here
+                state = BlockState.idleState;
                 break;
             default:
                 super.controlUpdate(tpf);
