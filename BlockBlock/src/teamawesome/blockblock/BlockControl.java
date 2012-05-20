@@ -6,6 +6,7 @@ package teamawesome.blockblock;
 import com.jme3.export.Savable;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
@@ -22,10 +23,12 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     protected BlockState state;
     private Color color;
     private int points;
+    private Spatial gridNode;
     
     /*-------------------------------Constructor------------------------------*/
     public BlockControl() {
         state = BlockState.idleState;
+        
     }
     
     /*-------------------------------Gets & Sets------------------------------*/
@@ -44,12 +47,11 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     
     /*-------------------------------Overrides--------------------------------*/
     @Override
-    public void setSpatial(Spatial spatial) {
-        super.setSpatial(spatial);
-    }
+    public void setSpatial(Spatial spatial) { super.setSpatial(spatial); }
     
     @Override
     protected void controlUpdate(float tpf) {
+        if(gridNode == null) gridNode = spatial.getParent().getParent().getChild("gridNode");
         
         switch (state) {
         case idleState:
@@ -60,10 +62,15 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
             state = BlockState.killState;
             break;
         case killState:
-            //TODO: fix certain kills...red,orange,and black don't delete when dropping fast and blue can be overidden with other blocks??
-            Cursor cursor = spatial.getParent().getParent().getChild("gridNode").getControl(GridControl.class).getCursor();
-            spatial.getParent().getParent().getChild("gridNode").getControl(GridControl.class).getGrid()[cursor.getX()][cursor.getY()] = null;
+            /*TODO: fix certain kills...red,orange,and black don't delete when dropping fast and blue can be overidden with other blocks??
+             
+             I think its that cursor changes when we go to fast so it never sets the grid position to null but the spatial gets detached 
+             because that doesnt depend on cursor......maybe give each block its own position?*/
+            
+            Cursor cursor = gridNode.getControl(GridControl.class).getCursor();
+            gridNode.getControl(GridControl.class).getGrid()[cursor.getX()][cursor.getY()] = null;
             spatial.getParent().detachChild(spatial);
+            System.out.println("\n\n\n\n\n\n Killed \n\n\n\n\n\n");
             break;
         case cursorState:
             state = BlockState.idleState;

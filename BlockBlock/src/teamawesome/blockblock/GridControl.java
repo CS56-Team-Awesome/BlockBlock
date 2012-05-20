@@ -79,15 +79,18 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     public void setCursor(Cursor cursor) { this.cursor = cursor; }
     
     public void moveCursor(int x, int y) {
-        if( !((cursor.getX()+x >= 0 && cursor.getX()+x < gridX) && (cursor.getY()+y >= 0 && cursor.getY()+y < gridY))) return;
-        System.out.println("\n\n\n\n\n\n" + grid[cursor.getX()+x][cursor.getY()+y] + "\n\n\n\n\n\n");
+        int tempX = cursor.getX();
+        int tempY = cursor.getY();
         
-        if(grid[cursor.getX()+x][cursor.getY()+y] != null && grid[cursor.getX()+x][cursor.getY()+y].getControl(BlockControl.class).getColor() == Color.Grey) return; 
+        if( !((tempX+x >= 0 && tempX+x < gridX) && (tempY+y >= 0 && tempY+y < gridY))) return;
+        System.out.println("\n\n\n\n\n\n" + grid[tempX+x][tempY+y] + "\n\n\n\n\n\n");
         
-        ((Node)spatial).getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getControl(TileControl.class).setTileState(TileControl.TileState.idleState);
-        cursor.setX(cursor.getX() + x);
-        cursor.setY(cursor.getY() + y);
-        ((Node)spatial).getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getControl(TileControl.class).setTileState(TileControl.TileState.cursorState);
+        if(grid[tempX+x][tempY+y] != null && grid[tempX+x][tempY+y].getControl(BlockControl.class).getColor() == Color.Grey) return; 
+        
+        ((Node)spatial).getChild("Tile" + tempX + "_" + tempY).getControl(TileControl.class).setTileState(TileControl.TileState.idleState);
+        cursor.setX(tempX + x);
+        cursor.setY(tempY + y);
+        ((Node)spatial).getChild("Tile" + (tempX + x) + "_" + (tempY + y)).getControl(TileControl.class).setTileState(TileControl.TileState.cursorState);
         
     }
 
@@ -113,8 +116,11 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
             System.out.println(grid[cursor.getX()][cursor.getY()].getControl(BlockControl.class).getColor());
         else
             System.out.println(grid[cursor.getX()][cursor.getY()]);
+        
         if(grid[cursor.getX()][cursor.getY()] != null) return;
+        
         Color color;
+        
         if (!colorArray.empty()) color = colorArray.pop();
         else color = Color.Green;
         
@@ -122,34 +128,8 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         grid[cursor.getX()][cursor.getY()] = bf.getBlock();
         bf.getBlock().setLocalTranslation(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getWorldTranslation());
         bf.getBlock().move(0, 0, 25);
-        switch (color) {
-        case Red: 
-            bf.getBlock().getControl(RedBlockControl.class).setState(BlockControl.BlockState.dropState);
-            break;
-        case Blue: 
-            bf.getBlock().getControl(BlueBlockControl.class).setState(BlockControl.BlockState.dropState);
-            break;
-        case Black: 
-            bf.getBlock().getControl(BlackBlockControl.class).setState(BlockControl.BlockState.dropState);
-            break;
-        case Yellow: 
-            bf.getBlock().getControl(YellowBlockControl.class).setState(BlockControl.BlockState.dropState);
-            break;
-        case Green: 
-            bf.getBlock().getControl(GreenBlockControl.class).setState(BlockControl.BlockState.dropState);
-            break;
-        case Grey: 
-            bf.getBlock().getControl(GreyBlockControl.class).setState(BlockControl.BlockState.dropState);
-            break;
-        case Orange: 
-            bf.getBlock().getControl(OrangeBlockControl.class).setState(BlockControl.BlockState.dropState);
-            break;
-        case Rainbow: 
-            bf.getBlock().getControl(RainbowBlockControl.class).setState(BlockControl.BlockState.dropState);
-            break;
-        }
-        
-        System.out.println("\n\n\n\n\n\n" + getAdjacent() + "\n\n\n\n\n\n");
+        bf.getBlock().getControl(BlockControl.class).setState(BlockControl.BlockState.dropState);
+        //System.out.println("\n\n\n\n\n\n" + getAdjacent() + "\n\n\n\n\n\n");
     }
     
     /*-------------------------------Overrides--------------------------------*/
