@@ -6,7 +6,6 @@ package teamawesome.blockblock;
 import com.jme3.export.Savable;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
-import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
@@ -24,6 +23,8 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     private Color color;
     private int points;
     private Spatial gridNode;
+    private int x;
+    private int y;
     
     /*-------------------------------Constructor------------------------------*/
     public BlockControl() {
@@ -43,6 +44,15 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     public BlockState getState() { return state; }
 
     public void setState(BlockState state) { this.state = state; }
+
+    public int getX() { return x; }
+
+    public int getY() { return y; }
+
+    public void setX(int x) { this.x = x; }
+
+    public void setY(int y) { this.y = y; }
+    
     
     
     /*-------------------------------Overrides--------------------------------*/
@@ -68,7 +78,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
              because that doesnt depend on cursor......maybe give each block its own position?*/
             
             Cursor cursor = gridNode.getControl(GridControl.class).getCursor();
-            gridNode.getControl(GridControl.class).getGrid()[cursor.getX()][cursor.getY()] = null;
+            gridNode.getControl(GridControl.class).getGrid()[x][y] = null;
             spatial.getParent().detachChild(spatial);
             System.out.println("\n\n\n\n\n\n Killed \n\n\n\n\n\n");
             break;

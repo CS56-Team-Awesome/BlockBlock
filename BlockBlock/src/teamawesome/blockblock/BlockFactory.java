@@ -87,6 +87,9 @@ public class BlockFactory {
             break;   
         }
         
+        block.getControl(BlockControl.class).setX(blockNode.getParent().getChild("gridNode").getControl(GridControl.class).getCursor().getX());
+        block.getControl(BlockControl.class).setY(blockNode.getParent().getChild("gridNode").getControl(GridControl.class).getCursor().getY());
+        
         block.setMaterial(mat);
         this.blockNode.attachChild(block);
         block.move(0, 0, 2);
