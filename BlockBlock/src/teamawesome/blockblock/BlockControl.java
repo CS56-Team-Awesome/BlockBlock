@@ -87,7 +87,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
             break;
         case dropState:
             if(spatial.getLocalTranslation().getZ() >= 0)
-                spatial.move(0, 0, -.1f);
+                spatial.move(0, 0, -.4f);
             else
             {
                 switch (color)

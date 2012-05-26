@@ -73,12 +73,13 @@ public class RunningState extends AbstractAppState {
         rootNode.addLight(al);
         
         //bloomeffect
-//        FilterPostProcessor fpp=new FilterPostProcessor(assetManager);
-//        BloomFilter bf=new BloomFilter(BloomFilter.GlowMode.Objects);
-//        bf.setBloomIntensity(5.0f);
-//        bf.setExposurePower(1.8f);
-//        fpp.addFilter(bf);
-//        viewPort.addProcessor(fpp);
+        FilterPostProcessor fpp=new FilterPostProcessor(assetManager);
+        BloomFilter bf=new BloomFilter(BloomFilter.GlowMode.Objects);
+        bf.setDownSamplingFactor(2.0f); 
+        bf.setBloomIntensity(3.0f);
+        bf.setExposurePower(1.2f);
+        fpp.addFilter(bf);
+        viewPort.addProcessor(fpp);
     }
 
     @Override

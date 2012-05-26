@@ -45,7 +45,7 @@ public class GridFactory {
                 Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
                 //mat.setBoolean("UseMaterialColors",true); 
                 mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_blue.png"));
-                mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
+                //mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
                 tile.setMaterial(mat);
                 tile.addControl(new TileControl(assetManager));
                 gridNode.attachChild(tile);
