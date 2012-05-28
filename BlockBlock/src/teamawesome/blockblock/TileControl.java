@@ -56,12 +56,10 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
                 if(previousState != TileState.cursorState) {
                     mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
                     mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_blue.png"));
-                    
                     mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
                     spatial.setMaterial(mat);
                 }
                 previousState = tileState;
-                //TODO:  (check if it is glowing then) reverse glow
                 break;
             case idleState:
                 if(previousState != TileState.idleState) {
