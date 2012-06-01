@@ -246,16 +246,14 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         block.getBlock().getControl(BlockControl.class).setX(B.getControl(BlockControl.class).getX());
         
         block.getBlock().getControl(BlockControl.class).setY(B.getControl(BlockControl.class).getY());
+     
+        block.getBlock().setLocalTranslation(B.getLocalTranslation());
+        
+        B.getControl(BlockControl.class).setState(BlockControl.BlockState.killState);
         
         grid[block.getBlock().getControl(BlockControl.class).getX()][block.getBlock().getControl(BlockControl.class).getY()] = block.getBlock();
         
-        System.out.println("Block in grid[" + B.getControl(BlockControl.class).getX() + "][" + B.getControl(BlockControl.class).getY() + "]" + "(change color):  " + grid[B.getControl(BlockControl.class).getX()][B.getControl(BlockControl.class).getY()]);
-        
-        block.getBlock().setLocalTranslation(B.getLocalTranslation());
-        
         block.getBlock().getControl(BlockControl.class).setState(BlockControl.BlockState.dropState);
-        
-        B.getControl(BlockControl.class).setState(BlockControl.BlockState.killState);
         
     }
     
