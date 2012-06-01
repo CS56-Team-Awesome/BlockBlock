@@ -21,7 +21,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     public enum BlockState { idleState, clearingState, killState, cursorState, dropState, explodeState, rainbowState, countDownState, rotateState, antidoteState };
     public enum Color { Red, Blue, Black, Yellow, Green, Grey, Orange, Rainbow };
     protected BlockState state;
-    private Color color;
+    protected Color color;
     private int points;
     protected Spatial gridNode;
     protected int x;

@@ -27,7 +27,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     private Spatial[][] grid;
     private Cursor cursor;
     private Stack<Color> colorArray ;
-    private int gridX, gridY;
+    public int gridX, gridY;
     private Spatial blockNode;
     private AssetManager assetManager;
     /*-------------------------------Constructor------------------------------*/
@@ -44,7 +44,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         
         for (int i = 0; i < 100; i++)
         {
-            int j = rand.nextInt(7);
+            int j = rand.nextInt(8);
             switch (j)
             {
                 case 0: 
@@ -67,6 +67,9 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
                     break;
                 case 6:
                     colorArray.push(Color.Yellow);
+                    break;
+                case 7:
+                    colorArray.push(Color.Rainbow);
                     break;
             }
         }

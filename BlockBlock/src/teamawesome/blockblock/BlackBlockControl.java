@@ -27,13 +27,18 @@ public class BlackBlockControl extends BlockControl {
                 adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
                 for(Spatial s: adj)
                 {
-                    if(s != null) s.getControl(BlockControl.class).setState(BlockState.clearingState);
+                    if(s != null && s.getControl(BlockControl.class).getColor() == Color.Grey) continue;
+                    else if(s != null) s.getControl(BlockControl.class).setState(BlockState.clearingState);
                 }
                 state = BlockState.killState;
                 break;
             case countDownState:
                 //TODO: countdown code
-                System.out.println(i--);
+                i--;
+                if(i%60 == 0)
+                {
+                    spatial.scale(.95f);
+                }
                 if(i < 0) {state = BlockState.explodeState; System.out.println("in explode\n\n\n");}
             default:
                 super.controlUpdate(tpf);

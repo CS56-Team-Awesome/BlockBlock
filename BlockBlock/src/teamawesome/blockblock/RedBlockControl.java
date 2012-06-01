@@ -31,6 +31,7 @@ public class RedBlockControl extends BlockControl {
                         s.getControl(BlockControl.class).setState(BlockState.explodeState);
                         
                     }
+                    else if(s != null && s.getControl(BlockControl.class).getColor() == Color.Grey) continue;
                     else if(s != null) s.getControl(BlockControl.class).setState(BlockState.clearingState);
                 }
                 
