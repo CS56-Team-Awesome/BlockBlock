@@ -22,7 +22,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     protected BlockState state;
     private Color color;
     private int points;
-    private Spatial gridNode;
+    protected Spatial gridNode;
     private int x;
     private int y;
     
