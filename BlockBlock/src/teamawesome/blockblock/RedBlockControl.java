@@ -30,6 +30,7 @@ public class RedBlockControl extends BlockControl {
                 {
                     if(s != null) s.getControl(BlockControl.class).setState(BlockState.clearingState);
                 }
+                
                 state = BlockState.killState;
                 break;
             default:

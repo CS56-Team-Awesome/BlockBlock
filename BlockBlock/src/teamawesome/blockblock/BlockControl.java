@@ -80,7 +80,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
             Cursor cursor = gridNode.getControl(GridControl.class).getCursor();
             gridNode.getControl(GridControl.class).getGrid()[x][y] = null;
             spatial.getParent().detachChild(spatial);
-            System.out.println("\n\n\n\n\n\n Killed \n\n\n\n\n\n");
+            //System.out.println("\n\n\n\n\n\n Killed \n\n\n\n\n\n");
             break;
         case cursorState:
             state = BlockState.idleState;

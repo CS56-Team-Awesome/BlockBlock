@@ -83,7 +83,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         int tempY = cursor.getY();
         
         if( !((tempX+x >= 0 && tempX+x < gridX) && (tempY+y >= 0 && tempY+y < gridY))) return;
-        System.out.println("\n\n\n\n\n\n" + grid[tempX+x][tempY+y] + "\n\n\n\n\n\n");
+        //System.out.println("\n\n\n\n\n\n" + grid[tempX+x][tempY+y] + "\n\n\n\n\n\n");
         
         if(grid[tempX+x][tempY+y] != null && grid[tempX+x][tempY+y].getControl(BlockControl.class).getColor() == Color.Grey) return; 
         
@@ -101,13 +101,57 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     /*-------------------------------Functions--------------------------------*/
     public ArrayList<Spatial> getAdjacent() {
         ArrayList<Spatial> adjList = new ArrayList<Spatial>();
-        for(int i = cursor.getX() - 1;  i <= cursor.getX() + 1; i++) {
-            for(int j = cursor.getY() - 1; j <= cursor.getY() + 1; j++) {
-                if (!(i >= 0 && i < gridX) ) continue;
-                if ( (!(j >= 0 && j < gridY)) || (i == cursor.getX() && j == cursor.getY())) continue;
-                adjList.add(grid[i][j]);
+        int x = cursor.getX() - 1;
+        int y = cursor.getY() - 1;
+        
+        for(int i = 0; i < 3; i++)
+        {
+            if (((x >= 0 && x < gridX)) && ((y >= 0 && y < gridY)))
+            {
+                adjList.add(grid[x][y]);
+            }
+            
+            if(i<2)y++;
+            
+        }
+        
+        for(int i = 0; i < 2; i++)
+        {
+            if (((x + 1 >= 0 && x + 1 < gridX)) && ((y >= 0 && y < gridY)))
+            {
+                adjList.add(grid[++x][y]);
+            }
+            else
+            {
+                x++;
             }
         }
+        
+        for(int i = 0; i < 2; i++)
+        {
+            if (((x >= 0 && x < gridX)) && ((y - 1  >= 0 && y - 1 < gridY)))
+            {
+                adjList.add(grid[x][--y]);
+            }
+            else
+            {
+                y--;
+            }
+        }
+        
+        if (((x - 1 >= 0 && x - 1 < gridX)) && ((y >= 0 && y < gridY)))
+            {
+                adjList.add(grid[--x][y]);
+            }
+        
+        
+//        for(int i = cursor.getX() - 1;  i <= cursor.getX() + 1; i++) {
+//            for(int j = cursor.getY() - 1; j <= cursor.getY() + 1; j++) {
+//                if (!(i >= 0 && i < gridX) ) continue;
+//                if ( (!(j >= 0 && j < gridY)) || (i == cursor.getX() && j == cursor.getY())) continue;
+//                adjList.add(grid[i][j]);
+//            }
+//        }
         return adjList;
     }
     
@@ -129,7 +173,10 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         bf.getBlock().setLocalTranslation(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getWorldTranslation());
         bf.getBlock().move(0, 0, 25);
         bf.getBlock().getControl(BlockControl.class).setState(BlockControl.BlockState.dropState);
-        //System.out.println("\n\n\n\n\n\n" + getAdjacent() + "\n\n\n\n\n\n");
+        System.out.println("\n\n\n\n" + colorArray.peek());
+        System.out.println(getAdjacent());
+        System.out.println(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()) + "\n\n\n\n");
+        
     }
     
     /*-------------------------------Overrides--------------------------------*/
