@@ -23,15 +23,23 @@ public class GreenBlockControl extends BlockControl {
     protected void controlUpdate(float tpf) {
         switch (state) {
             case countDownState:
-//                adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
-//                for(Spatial s: adj)
-//                {
-//                    if(s != null)
-//                    {
-//                        s.getControl(BlockControl.class).setColor(Color.Green);
-//                    }
-//                }
-                if(i < 0) state = BlockState.killState; 
+                --i;
+                if(i < 0)
+                {
+                    i = 300;
+                    state = BlockState.killState;
+                } 
+                break;
+            case poisonState:
+                adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
+                for(Spatial s: adj)
+                {
+                    if(s != null)
+                    {
+                        gridNode.getControl(GridControl.class).changeColor(s, Color.Green);
+                    }
+                }
+                state = BlockState.countDownState;
                 break;
             default:
                 super.controlUpdate(tpf);

@@ -4,6 +4,7 @@
  */
 package teamawesome.blockblock;
 
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
 
 /**
@@ -15,12 +16,14 @@ public class YellowBlockControl extends BlockControl {
     public enum YellowState { liftState, rotateState, dropState, checkState};
     private YellowState YState;
     private Spatial check;
+    private Vector3f V[]; 
 
     public YellowBlockControl() {
         setColor(Color.Yellow);
         setState(BlockState.cursorState);
         YState = YellowState.checkState;
         check = null;
+        V = new Vector3f[8];
         //TODO: Points
     }
 
@@ -32,9 +35,18 @@ public class YellowBlockControl extends BlockControl {
                 {
                     case checkState:
                         adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
+                        int i = 0;
                         for(Spatial s: adj)
                         {
-                            if(s != null) check = s;
+                            if(s != null) 
+                            {
+                                check = s;
+                                V[i++] = s.getLocalTranslation();
+                            }
+                            else
+                            {
+                                V[i++] = null;
+                            }
                         }
                         
                         if(check == null) state = BlockState.idleState;
@@ -42,6 +54,19 @@ public class YellowBlockControl extends BlockControl {
                         
                         break;
                     case rotateState:
+//                        i = 1;
+//                        for(Spatial s: adj)
+//                        {
+//                            if(s != null && V[i%8] != null) 
+//                            {
+//                                s.setLocalTranslation(V[i%8]);
+//                                i++;
+//                            }
+//                            else
+//                            {
+//                                i++;
+//                            }
+//                        }
                         YState = YellowState.dropState;
                         break;
                     case dropState:

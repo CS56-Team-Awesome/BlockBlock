@@ -5,6 +5,8 @@ package teamawesome.blockblock;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.export.Savable;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
@@ -234,6 +236,19 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         bf.getBlock().getControl(BlockControl.class).setState(BlockControl.BlockState.dropState);
         if (!colorArray.empty())System.out.println("\n\n\n\n" + colorArray.peek());
         System.out.println(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()) + "\n\n\n\n");
+        
+    }
+    
+    public void changeColor(Spatial B, Color color)
+    {
+        BlockFactory block = new BlockFactory(blockNode, assetManager, color);
+        
+        block.getBlock().getControl(BlockControl.class).setX(B.getControl(BlockControl.class).getX());
+        block.getBlock().getControl(BlockControl.class).setY(B.getControl(BlockControl.class).getY());
+        grid[B.getControl(BlockControl.class).getX()][B.getControl(BlockControl.class).getY()] = block.getBlock();
+        block.getBlock().setLocalTranslation(B.getLocalTranslation());
+        block.getBlock().getControl(BlockControl.class).setState(BlockControl.BlockState.dropState);
+        B.getControl(BlockControl.class).setState(BlockControl.BlockState.killState);
         
     }
     
