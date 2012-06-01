@@ -55,8 +55,8 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
             case cursorState:
                 if(previousState != TileState.cursorState) {
                     mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
-                    mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_blue.png"));
-                    mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
+                    mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_texture2.png"));
+                    mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_texture2.png"));
                     spatial.setMaterial(mat);
                 }
                 previousState = tileState;
@@ -66,7 +66,7 @@ public class TileControl extends AbstractControl implements Savable, Cloneable {
                     mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
                     //mat.setBoolean("UseMaterialColors",true); 
                     mat.clearParam("GlowMap");
-                    mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_blue.png"));
+                    mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_texture2.png"));
                     //mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
                     spatial.setMaterial(mat);
                 }

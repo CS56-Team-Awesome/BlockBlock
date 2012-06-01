@@ -41,11 +41,11 @@ public class GridFactory {
          */
         for (int i = 0; i < gridSizeX; i++) {
             for (int j = 0; j < gridSizeY; j++) {
-                Spatial tile = assetManager.loadModel("Models/Tile.j3o");
+                Spatial tile = assetManager.loadModel("Models/Tile2.j3o");
                 tile.setName("Tile" + i + "_" + j);
                 Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
                 //mat.setBoolean("UseMaterialColors",true); 
-                mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_blue.png"));
+                mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/tile_texture2.png"));
                 //mat.setTexture("GlowMap", assetManager.loadTexture("Textures/tile_blue_alpha.png"));
                 tile.setMaterial(mat);
                 tile.addControl(new TileControl(assetManager));
