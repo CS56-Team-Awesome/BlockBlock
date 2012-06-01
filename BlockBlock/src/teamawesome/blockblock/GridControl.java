@@ -217,10 +217,8 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     }
     
     public void placeBlock() {
-        if(grid[cursor.getX()][cursor.getY()] !=null)
-            System.out.println(grid[cursor.getX()][cursor.getY()].getControl(BlockControl.class).getColor());
-        else
-            System.out.println(grid[cursor.getX()][cursor.getY()]);
+        
+        System.out.println("Block in grid " + grid[cursor.getX()][cursor.getY()] + "\n\n\n");
         
         if(grid[cursor.getX()][cursor.getY()] != null) return;
         
@@ -249,9 +247,9 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         
         block.getBlock().getControl(BlockControl.class).setY(B.getControl(BlockControl.class).getY());
         
-        grid[B.getControl(BlockControl.class).getX()][B.getControl(BlockControl.class).getY()] = block.getBlock();
+        grid[block.getBlock().getControl(BlockControl.class).getX()][block.getBlock().getControl(BlockControl.class).getY()] = block.getBlock();
         
-        System.out.println("\n\n\n\n" + grid[B.getControl(BlockControl.class).getX()][B.getControl(BlockControl.class).getY()]);
+        System.out.println("Block in grid[" + B.getControl(BlockControl.class).getX() + "][" + B.getControl(BlockControl.class).getY() + "]" + "(change color):  " + grid[B.getControl(BlockControl.class).getX()][B.getControl(BlockControl.class).getY()]);
         
         block.getBlock().setLocalTranslation(B.getLocalTranslation());
         
