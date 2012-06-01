@@ -9,6 +9,7 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +26,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
     protected Spatial gridNode;
     private int x;
     private int y;
+    protected ArrayList<Spatial> adj;
     
     /*-------------------------------Constructor------------------------------*/
     public BlockControl() {
