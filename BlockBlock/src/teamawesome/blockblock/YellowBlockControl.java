@@ -49,7 +49,7 @@ public class YellowBlockControl extends BlockControl {
                         {
                             if(s != null)
                             {
-                                s.move(0, 0, -.05f);
+                                s.move(0, 0, -.2f);
                                 check = s;
                             }
                         }
@@ -61,7 +61,7 @@ public class YellowBlockControl extends BlockControl {
                         {
                             if(s != null)
                             {
-                                s.move(0, 0, .05f);
+                                s.move(0, 0, .2f);
                                 check = s;
                             }
                         }

@@ -34,7 +34,8 @@ public class Main extends SimpleApplication {
         settings.setResolution((int)(scrnsize.width/1.2), (int)(scrnsize.height/1.2));
         settings.setTitle("BlockBlock");
         settings.setFrameRate(60);
-        //settings.setFullscreen(true); TODO: Fix full screen
+        //settings.setFullscreen(true); 
+        //TODO: Fix full screen
         setShowSettings(false);
         setSettings(settings);
         
