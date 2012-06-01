@@ -234,6 +234,8 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         bf.getBlock().setLocalTranslation(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()).getWorldTranslation());
         bf.getBlock().move(0, 0, 25);
         bf.getBlock().getControl(BlockControl.class).setState(BlockControl.BlockState.dropState);
+        
+        
         if (!colorArray.empty())System.out.println("\n\n\n\n" + colorArray.peek());
         System.out.println(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()) + "\n\n\n\n");
         
@@ -244,10 +246,17 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         BlockFactory block = new BlockFactory(blockNode, assetManager, color);
         
         block.getBlock().getControl(BlockControl.class).setX(B.getControl(BlockControl.class).getX());
+        
         block.getBlock().getControl(BlockControl.class).setY(B.getControl(BlockControl.class).getY());
+        
         grid[B.getControl(BlockControl.class).getX()][B.getControl(BlockControl.class).getY()] = block.getBlock();
+        
+        System.out.println("\n\n\n\n" + grid[B.getControl(BlockControl.class).getX()][B.getControl(BlockControl.class).getY()]);
+        
         block.getBlock().setLocalTranslation(B.getLocalTranslation());
+        
         block.getBlock().getControl(BlockControl.class).setState(BlockControl.BlockState.dropState);
+        
         B.getControl(BlockControl.class).setState(BlockControl.BlockState.killState);
         
     }

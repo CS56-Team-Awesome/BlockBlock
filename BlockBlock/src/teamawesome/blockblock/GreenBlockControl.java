@@ -11,11 +11,12 @@ import com.jme3.scene.Spatial;
  * @author kaizokuace
  */
 public class GreenBlockControl extends BlockControl {
-    private static int i = 300;
+    private static int i = 600;
 
     public GreenBlockControl() {
         setColor(Color.Green);
         setState(BlockState.cursorState);
+        if(i <= 0) i = 600;
         //TODO: Points
     }
 
@@ -24,10 +25,9 @@ public class GreenBlockControl extends BlockControl {
         switch (state) {
             case countDownState:
                 --i;
-                if(i < 0)
+                if(i <= 0)
                 {
-                    i = 300;
-                    state = BlockState.killState;
+                    gridNode.getControl(GridControl.class).changeColor(spatial, Color.Grey);
                 } 
                 break;
             case poisonState:
