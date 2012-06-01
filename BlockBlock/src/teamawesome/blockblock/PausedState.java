@@ -9,10 +9,16 @@ import com.jme3.app.state.AppStateManager;
 import com.jme3.asset.AssetManager;
 import com.jme3.input.InputManager;
 import com.jme3.input.controls.ActionListener;
+import com.jme3.post.Filter;
+import com.jme3.post.FilterPostProcessor;
+import com.jme3.post.SceneProcessor;
+import com.jme3.post.filters.FadeFilter;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import com.jme3.system.AppSettings;
 import com.jme3.ui.Picture;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  *
@@ -28,6 +34,7 @@ public class PausedState extends AbstractAppState {
     private ViewPort          viewPort;
     private Node              guiNode;
     private AppSettings       settings;
+    private FadeFilter        fade;
 
     public PausedState() {
     }
@@ -56,6 +63,22 @@ public class PausedState extends AbstractAppState {
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         if(enabled){
+            List<SceneProcessor> procList = viewPort.getProcessors();
+            FilterPostProcessor fpp = null;
+            fade = null;
+            for(SceneProcessor sp : procList){
+                if(sp instanceof FilterPostProcessor)
+                    fpp = (FilterPostProcessor)sp;
+            }
+            Iterator itr = fpp.getFilterIterator();
+            while(itr.hasNext()){
+                 Object f = itr.next();
+                 if(f instanceof FadeFilter){
+                     fade = (FadeFilter)f;
+                     break;
+                 }
+            }
+            fade.fadeIn();
             
             guiNode.detachAllChildren();
             Picture pic = new Picture("HUD Picture");
@@ -80,6 +103,7 @@ public class PausedState extends AbstractAppState {
                      System.out.println("PausedState disabled");
                      inputManager.removeListener(this);
                      setEnabled(false);
+                     //fade.fadeOut();
                  }
                  if ("Move Block Left".equals(name) && !keyPressed){}
                  if ("Move Block Right".equals(name) && !keyPressed){}

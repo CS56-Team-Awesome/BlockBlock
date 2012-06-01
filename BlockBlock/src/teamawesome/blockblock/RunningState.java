@@ -105,6 +105,7 @@ public class RunningState extends AbstractAppState {
                          System.out.println("RunningState disabled");
                          inputManager.removeListener(this);
                          setEnabled(false);
+                         fade.fadeOut();
                      }
                      if ("Drop Block".equals(name) && !keyPressed) {
                          rootNode.getChild("gridNode").getControl(GridControl.class).placeBlock();
