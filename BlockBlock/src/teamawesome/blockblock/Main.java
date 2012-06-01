@@ -5,6 +5,8 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.input.KeyInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
+import com.jme3.post.FilterPostProcessor;
+import com.jme3.post.filters.FadeFilter;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.Node;
 import com.jme3.system.AppSettings;
@@ -38,6 +40,13 @@ public class Main extends SimpleApplication {
         
         super.start();
     }
+    
+    private FilterPostProcessor fpp;
+    private FadeFilter fade;
+
+    public FadeFilter getFade() {
+        return fade;
+    }
 
     @Override
     public void simpleInitApp() {
@@ -63,8 +72,6 @@ public class Main extends SimpleApplication {
         stateManager.getState(RunningState.class).setCam(cam);
         
         //TODO: Write code
-        
-        
         
         
   }

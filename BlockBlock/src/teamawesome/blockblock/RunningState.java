@@ -12,6 +12,7 @@ import com.jme3.light.AmbientLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
+import com.jme3.post.filters.FadeFilter;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
@@ -33,7 +34,7 @@ public class RunningState extends AbstractAppState {
     private ViewPort          viewPort;
     private Camera            cam;
     private Stack<Color> colorArray;
-
+    FadeFilter fade;
     
     public RunningState() {
     }
@@ -55,6 +56,7 @@ public class RunningState extends AbstractAppState {
         this.colorArray   = new Stack<Color>();
         
         
+        
         //make blockNode
         Node blockNode = new Node("blockNode");
         rootNode.attachChild(blockNode);
@@ -73,13 +75,19 @@ public class RunningState extends AbstractAppState {
         rootNode.addLight(al);
         
         //bloomeffect
-        FilterPostProcessor fpp=new FilterPostProcessor(assetManager);
-        BloomFilter bf=new BloomFilter(BloomFilter.GlowMode.Objects);
+        FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
+        BloomFilter bf = new BloomFilter(BloomFilter.GlowMode.Objects);
         bf.setDownSamplingFactor(2.0f); 
         bf.setBloomIntensity(3.0f);
         bf.setExposurePower(1.2f);
         fpp.addFilter(bf);
         viewPort.addProcessor(fpp);
+        
+        //fade effect
+        fade = new FadeFilter(2); // e.g. 2 seconds
+        fpp.addFilter(fade);
+        viewPort.addProcessor(fpp);
+        fade.setValue(0);
     }
 
     @Override
@@ -87,7 +95,7 @@ public class RunningState extends AbstractAppState {
         super.setEnabled(enabled);
         if(enabled) {
             System.out.println("run enabled");           
-            
+            fade.fadeIn();
             //TODO: Write code and fix mappings
      
             ActionListener actionListener = new ActionListener() {
