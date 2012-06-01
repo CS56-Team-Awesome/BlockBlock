@@ -4,6 +4,8 @@
  */
 package teamawesome.blockblock;
 
+import com.jme3.scene.Spatial;
+
 /**
  *
  * @author kaizokuace
@@ -18,11 +20,15 @@ public class BlueBlockControl extends BlockControl {
 
     @Override
     protected void controlUpdate(float tpf) {
+        //System.out.println(state + " before switch");
         switch (state) {
             case explodeState:
-                //TODO: explode code here
-                state = BlockState.killState;
-                break;  
+                adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
+                for(Spatial s: adj)
+                {
+                    if(s != null && s.getControl(BlockControl.class).getColor() == Color.Blue) s.getControl(BlockControl.class).setState(BlockState.explodeState);
+                }
+                state = BlockState.killState;  
             default:
                 super.controlUpdate(tpf);
         }

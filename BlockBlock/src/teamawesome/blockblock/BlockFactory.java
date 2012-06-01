@@ -31,7 +31,7 @@ public class BlockFactory {
         
         /*--------------------generate block----------------------------------*/ 
         block = assetManager.loadModel("Models/Block.j3o");
-        block.setName("Block" + blockCount++);
+        block.setName("Block" + (blockCount++) + "_" + color);
         //Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
         Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         //mat.setBoolean("UseMaterialColors",true);

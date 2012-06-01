@@ -26,7 +26,12 @@ public class RedBlockControl extends BlockControl {
                 adj = gridNode.getControl(GridControl.class).getAdjacent();
                 for(Spatial s: adj)
                 {
-                    if(s != null) s.getControl(BlockControl.class).setState(BlockState.clearingState);
+                    if(s != null && s.getControl(BlockControl.class).getColor() == Color.Blue)
+                    {
+                        s.getControl(BlockControl.class).setState(BlockState.explodeState);
+                        
+                    }
+                    else if(s != null) s.getControl(BlockControl.class).setState(BlockState.clearingState);
                 }
                 
                 state = BlockState.killState;

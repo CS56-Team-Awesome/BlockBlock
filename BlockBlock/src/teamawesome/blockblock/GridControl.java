@@ -154,6 +154,61 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
 //        }
         return adjList;
     }
+    public ArrayList<Spatial> getblockAdjacent(int X, int Y ) {
+        ArrayList<Spatial> adjList = new ArrayList<Spatial>();
+        int x = X - 1;
+        int y = Y - 1;
+        
+        for(int i = 0; i < 3; i++)
+        {
+            if (((x >= 0 && x < gridX)) && ((y >= 0 && y < gridY)))
+            {
+                adjList.add(grid[x][y]);
+            }
+            
+            if(i<2)y++;
+            
+        }
+        
+        for(int i = 0; i < 2; i++)
+        {
+            if (((x + 1 >= 0 && x + 1 < gridX)) && ((y >= 0 && y < gridY)))
+            {
+                adjList.add(grid[++x][y]);
+            }
+            else
+            {
+                x++;
+            }
+        }
+        
+        for(int i = 0; i < 2; i++)
+        {
+            if (((x >= 0 && x < gridX)) && ((y - 1  >= 0 && y - 1 < gridY)))
+            {
+                adjList.add(grid[x][--y]);
+            }
+            else
+            {
+                y--;
+            }
+        }
+        
+        if (((x - 1 >= 0 && x - 1 < gridX)) && ((y >= 0 && y < gridY)))
+            {
+                adjList.add(grid[--x][y]);
+            }
+        
+        
+//        for(int i = cursor.getX() - 1;  i <= cursor.getX() + 1; i++) {
+//            for(int j = cursor.getY() - 1; j <= cursor.getY() + 1; j++) {
+//                if (!(i >= 0 && i < gridX) ) continue;
+//                if ( (!(j >= 0 && j < gridY)) || (i == cursor.getX() && j == cursor.getY())) continue;
+//                adjList.add(grid[i][j]);
+//            }
+//        }
+        return adjList;
+    }
     
     public void placeBlock() {
         if(grid[cursor.getX()][cursor.getY()] !=null)
