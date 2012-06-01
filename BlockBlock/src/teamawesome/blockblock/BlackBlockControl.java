@@ -11,7 +11,7 @@ import com.jme3.scene.Spatial;
  * @author kaizokuace
  */
 public class BlackBlockControl extends BlockControl {
-    private int i = 300;
+    private int i = 600;
 
     public BlackBlockControl() {
         setColor(Color.Black);
@@ -24,7 +24,7 @@ public class BlackBlockControl extends BlockControl {
         switch (state) {
             case explodeState:
                 //TODO: explode code here
-                adj = gridNode.getControl(GridControl.class).getAdjacent();
+                adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
                 for(Spatial s: adj)
                 {
                     if(s != null) s.getControl(BlockControl.class).setState(BlockState.clearingState);
@@ -33,8 +33,8 @@ public class BlackBlockControl extends BlockControl {
                 break;
             case countDownState:
                 //TODO: countdown code
-                i--;
-                if(i < 0) state = BlockState.explodeState;
+                System.out.println(i--);
+                if(i < 0) {state = BlockState.explodeState; System.out.println("in explode\n\n\n");}
             default:
                 super.controlUpdate(tpf);
         }

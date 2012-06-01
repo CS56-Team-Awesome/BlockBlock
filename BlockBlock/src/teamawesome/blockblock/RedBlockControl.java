@@ -23,7 +23,7 @@ public class RedBlockControl extends BlockControl {
         switch (state) {
             case explodeState:
                 //TODO: explode code here
-                adj = gridNode.getControl(GridControl.class).getAdjacent();
+                adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
                 for(Spatial s: adj)
                 {
                     if(s != null && s.getControl(BlockControl.class).getColor() == Color.Blue)

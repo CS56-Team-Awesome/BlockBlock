@@ -31,7 +31,7 @@ public class YellowBlockControl extends BlockControl {
                 switch(YState)
                 {
                     case checkState:
-                        adj = gridNode.getControl(GridControl.class).getAdjacent();
+                        adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
                         for(Spatial s: adj)
                         {
                             if(s != null) check = s;
@@ -54,7 +54,7 @@ public class YellowBlockControl extends BlockControl {
                             }
                         }
                         
-                        if(check != null && check.getLocalTranslation().getZ() <= 0) state = BlockState.idleState;;
+                        if(check != null && check.getLocalTranslation().getZ() <= .5f) state = BlockState.idleState;;
                         break;
                     case liftState:
                         for(Spatial s: adj)

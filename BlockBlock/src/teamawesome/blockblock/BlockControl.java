@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class BlockControl extends AbstractControl implements Savable, Cloneable {
     
     /*-------------------------------Fields-----------------------------------*/
-    public enum BlockState { idleState, clearingState, killState, cursorState, dropState, explodeState, rainbowState, countDownState, rotateState, poisonState, antidoteState };
+    public enum BlockState { idleState, clearingState, killState, cursorState, dropState, explodeState, rainbowState, countDownState, rotateState, antidoteState };
     public enum Color { Red, Blue, Black, Yellow, Green, Grey, Orange, Rainbow };
     protected BlockState state;
     private Color color;
@@ -95,7 +95,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
                         state = BlockState.idleState;
                         break;
                     case Green:
-                        state = BlockState.poisonState;
+                        state = BlockState.countDownState;
                         break;
                     case Grey:    
                         state = BlockState.idleState;
