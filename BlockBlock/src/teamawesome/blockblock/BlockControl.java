@@ -71,7 +71,10 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
             break;
         case clearingState:
             //TODO: clearing animation code
-            state = BlockState.killState;
+            spatial.scale(.85f);
+            spatial.rotate(0, 0, 1);
+            if(spatial.getLocalScale().getX() < .05f)
+                state = BlockState.killState;
             break;
         case killState:
             gridNode.getControl(GridControl.class).getGrid()[x][y] = null;
