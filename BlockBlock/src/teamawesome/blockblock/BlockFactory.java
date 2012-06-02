@@ -81,7 +81,7 @@ public class BlockFactory {
             break;
         case Rainbow: 
             //mat.setTexture("DiffuseMap", assetManager.loadTexture("Textures/block_orange.png"));
-            mat.setColor("Color", ColorRGBA.Gray);
+            mat.setColor("Color", ColorRGBA.Pink);
             mat.setTexture("ColorMap", assetManager.loadTexture("Textures/block_texture2.png"));
             block.addControl(new RainbowBlockControl());
             break;   

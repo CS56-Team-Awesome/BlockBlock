@@ -97,7 +97,7 @@ public class YellowBlockControl extends BlockControl {
                         break;
                     
                     case rotateState:
-                        i = 1;
+//                        i = 1;
 //                        for(Spatial s: adj)
 //                        {
 //                            if(s != null && V[i%8] != null) 

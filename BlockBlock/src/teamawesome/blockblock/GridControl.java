@@ -28,6 +28,9 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     public int gridX, gridY;
     private Spatial blockNode;
     private AssetManager assetManager;
+    private BlockFactory nextBlock;
+    private static boolean make = true;
+    
     /*-------------------------------Constructor------------------------------*/
     public GridControl(int gridX, int gridY, Cursor cursor, Stack<Color> colorArray, AssetManager assetManager, Node rootNode) {
         this.grid = new Spatial[gridX][gridY];
@@ -230,8 +233,17 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         bf.getBlock().move(0, 0, 25);
         bf.getBlock().getControl(BlockControl.class).setState(BlockControl.BlockState.dropState);
         
-        
-        if (!colorArray.empty())System.out.println("\n\n\n\nNext Color is " + colorArray.peek() + "\n\n\n");
+        if (make)
+        {
+            nextBlock = new BlockFactory(blockNode, assetManager, colorArray.peek());
+            nextBlock.getBlock().setLocalTranslation(blockNode.getParent().getChild("Tile" + (gridX-1) + "_" + (gridY-1)).getWorldTranslation());
+            nextBlock.getBlock().move(2f, 0, 0);
+        }
+        else if (!colorArray.empty())
+        {
+            changeColor(nextBlock.getBlock(), colorArray.peek());
+            System.out.println("\n\n\n\nNext Color is " + colorArray.peek() + "\n\n\n");
+        }
         
     }
     
