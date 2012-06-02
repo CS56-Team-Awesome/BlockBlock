@@ -48,7 +48,7 @@ public class YellowBlockControl extends BlockControl {
                     case checkState:
                         adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
                         grid = gridNode.getControl(GridControl.class).getGrid();
-                        System.out.println(adj);
+                        //System.out.println(adj);
                         i = 0;
                         for(Spatial s: adj)
                         {
@@ -140,7 +140,7 @@ public class YellowBlockControl extends BlockControl {
                         break;
                     
                     case dropState:
-                        System.out.println("\n\n\n\n\n\n\n" + adjCount);
+                        //System.out.println("\n\n\n\n\n\n\n" + adjCount);
                         for(Spatial s: adj)
                         {
                             if(s != null)
