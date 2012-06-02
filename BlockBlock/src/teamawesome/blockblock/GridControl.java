@@ -5,9 +5,6 @@ package teamawesome.blockblock;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.export.Savable;
-import com.jme3.material.Material;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
@@ -15,7 +12,6 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.control.AbstractControl;
 import com.jme3.scene.control.Control;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 import teamawesome.blockblock.BlockControl.Color;
@@ -46,8 +42,9 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         
         for (int i = 0; i < 100; i++)
         {
-            int j = rand.nextInt(8);
-            switch (j)
+            //int j = rand.nextInt(8);
+            if(i < 90) {colorArray.push(Color.Green); continue;}
+            switch (1)
             {
                 case 0: 
                     colorArray.push(Color.Black);
@@ -234,8 +231,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         bf.getBlock().getControl(BlockControl.class).setState(BlockControl.BlockState.dropState);
         
         
-        if (!colorArray.empty())System.out.println("\n\n\n\n" + colorArray.peek());
-        System.out.println(blockNode.getParent().getChild("Tile" + cursor.getX() + "_" + cursor.getY()) + "\n\n\n\n");
+        if (!colorArray.empty())System.out.println("\n\n\n\nNext Color is " + colorArray.peek() + "\n\n\n");
         
     }
     
@@ -249,7 +245,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
      
         block.getBlock().setLocalTranslation(B.getLocalTranslation());
         
-        B.getControl(BlockControl.class).setState(BlockControl.BlockState.killState);
+        B.getParent().detachChild(B);
         
         grid[block.getBlock().getControl(BlockControl.class).getX()][block.getBlock().getControl(BlockControl.class).getY()] = block.getBlock();
         
