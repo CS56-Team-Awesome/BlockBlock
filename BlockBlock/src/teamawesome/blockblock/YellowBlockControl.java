@@ -18,6 +18,9 @@ public class YellowBlockControl extends BlockControl {
     private YellowState YState;
     private Spatial check;
     private Vector3f V[]; 
+    private Spatial[][] grid;
+    private int adjCount = 0;
+    private int i = 0;
 
     public YellowBlockControl() {
         setColor(Color.Yellow);
@@ -26,6 +29,13 @@ public class YellowBlockControl extends BlockControl {
         check = null;
         V = new Vector3f[8];
         //TODO: Points
+    }
+    
+    public boolean inBound(int x, int y)
+    {
+        if( (x >= 0 && x < gridNode.getControl(GridControl.class).gridX) && (y >= 0 && y < gridNode.getControl(GridControl.class).gridY) )
+            return true;
+        return false;
     }
 
     @Override
@@ -37,41 +47,44 @@ public class YellowBlockControl extends BlockControl {
                     //TODO: Add in correct grid spot fix drop?
                     case checkState:
                         adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
-                        int i = 0;
+                        grid = gridNode.getControl(GridControl.class).getGrid();
+                        System.out.println(adj);
+                        i = 0;
                         for(Spatial s: adj)
                         {
                             if(s != null) 
                             {
                                 check = s;
                                 V[i] = s.getLocalTranslation();
+                                adjCount++;
                             }
                             else
                             {
                                 switch(i)
                                 {
                                     case 0: 
-                                        V[i] = ((Node)gridNode).getChild("Tile" + (x - 1) + "_" + (y - 1)).getWorldTranslation();
+                                        if(inBound(x-1, y-1)) V[i] = ((Node)gridNode).getChild("Tile" + (x - 1) + "_" + (y - 1)).getWorldTranslation();
                                         break;
                                     case 1: 
-                                        V[i] = ((Node)gridNode).getChild("Tile" + (x - 1) + "_" + y).getWorldTranslation();
+                                        if(inBound(x-1, y)) V[i] = ((Node)gridNode).getChild("Tile" + (x - 1) + "_" + y).getWorldTranslation();
                                         break;
                                     case 2: 
-                                        V[i] = ((Node)gridNode).getChild("Tile" + (x - 1) + "_" + (y + 1)).getWorldTranslation();
+                                        if(inBound(x-1, y+1)) V[i] = ((Node)gridNode).getChild("Tile" + (x - 1) + "_" + (y + 1)).getWorldTranslation();
                                         break;
                                     case 3: 
-                                        V[i] = ((Node)gridNode).getChild("Tile" + x + "_" + (y + 1)).getWorldTranslation();
+                                        if(inBound(x, y+1)) V[i] = ((Node)gridNode).getChild("Tile" + x + "_" + (y + 1)).getWorldTranslation();
                                         break;  
                                     case 4: 
-                                        V[i] = ((Node)gridNode).getChild("Tile" + (x + 1) + "_" + (y + 1)).getWorldTranslation();
+                                        if(inBound(x+1, y+1)) V[i] = ((Node)gridNode).getChild("Tile" + (x + 1) + "_" + (y + 1)).getWorldTranslation();
                                         break;
                                     case 5: 
-                                        V[i] = ((Node)gridNode).getChild("Tile" + (x + 1) + "_" + y).getWorldTranslation();
+                                        if(inBound(x+1, y)) V[i] = ((Node)gridNode).getChild("Tile" + (x + 1) + "_" + y).getWorldTranslation();
                                         break;
                                     case 6: 
-                                        V[i] = ((Node)gridNode).getChild("Tile" + (x + 1) + "_" + (y - 1)).getWorldTranslation();
+                                        if(inBound(x+1, y-1)) V[i] = ((Node)gridNode).getChild("Tile" + (x + 1) + "_" + (y - 1)).getWorldTranslation();
                                         break;
                                     case 7: 
-                                        V[i] = ((Node)gridNode).getChild("Tile" + x + "_" + (y - 1)).getWorldTranslation();
+                                        if(inBound(x, y-1)) V[i] = ((Node)gridNode).getChild("Tile" + x + "_" + (y - 1)).getWorldTranslation();
                                         break;    
                                 }
                             }
@@ -85,28 +98,59 @@ public class YellowBlockControl extends BlockControl {
                     
                     case rotateState:
                         i = 1;
-                        for(Spatial s: adj)
-                        {
-                            if(s != null) 
-                            {
-                                s.setLocalTranslation(V[i%8]);
-                                i++;
-                            }
-                        }
+//                        for(Spatial s: adj)
+//                        {
+//                            if(s != null && V[i%8] != null) 
+//                            {
+//                                s.setLocalTranslation(V[i%8]);
+//                                s.move(0f, 0f, 4f);
+//                            }
+//                            
+//                            switch(i%8)
+//                                {
+//                                    case 0: 
+//                                        if(inBound(x-1, y-1)) grid[x - 1][y - 1] = s;
+//                                        break;
+//                                    case 1: 
+//                                        if(inBound(x-1, y)) grid[x - 1][y] = s;
+//                                        break;
+//                                    case 2: 
+//                                        if(inBound(x-1, y+1)) grid[x - 1][y + 1] = s;
+//                                        break;
+//                                    case 3: 
+//                                        if(inBound(x, y+1)) grid[x][y + 1] = s;
+//                                        break;  
+//                                    case 4: 
+//                                        if(inBound(x+1, y+1)) grid[x + 1][y + 1] = s;
+//                                        break;
+//                                    case 5: 
+//                                        if(inBound(x+1, y)) grid[x + 1][y] = s;
+//                                        break;
+//                                    case 6: 
+//                                        if(inBound(x+1, y-1)) grid[x + 1][y - 1] = s;
+//                                        break;
+//                                    case 7: 
+//                                        if(inBound(x, y-1)) grid[x][y - 1] = s;
+//                                        break;    
+//                                }
+//                                i++;
+//                        }
                         YState = YellowState.dropState;
+                        i = 0;
                         break;
                     
                     case dropState:
+                        System.out.println("\n\n\n\n\n\n\n" + adjCount);
                         for(Spatial s: adj)
                         {
                             if(s != null)
                             {
-                                s.move(0, 0, -.2f);
-                                check = s;
+                                s.move(0, 0, -.05f);
                             }
+                            if(s != null && s.getLocalTranslation().getZ() <= .5f) i++;
                         }
                         
-                        if(check != null && check.getLocalTranslation().getZ() <= .5f) state = BlockState.idleState;;
+                        if(i >= adjCount) {/*System.out.println("\n\n\n\n\n\n\n" + i);*/ state = BlockState.idleState;}
                         break;
                     
                     case liftState:
@@ -114,7 +158,7 @@ public class YellowBlockControl extends BlockControl {
                         {
                             if(s != null)
                             {
-                                s.move(0, 0, .2f);
+                                s.move(0, 0, .05f);
                                 check = s;
                             }
                         }

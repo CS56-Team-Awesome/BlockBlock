@@ -40,43 +40,37 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         
         Random rand = new Random();
         
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 1000; i++)
         {
-            //int j = rand.nextInt(8);
-            if(i < 99) {colorArray.push(Color.Yellow); continue;}
-            colorArray.push(Color.Black);
-            colorArray.push(Color.Blue);
-            colorArray.push(Color.Grey);
-            colorArray.push(Color.Blue);
+            int j = rand.nextInt(8);
             
-            
-//            switch (1)
-//            {
-//                case 0: 
-//                    colorArray.push(Color.Black);
-//                    break;
-//                case 1:
-//                    colorArray.push(Color.Blue);
-//                    break;
-//                case 2:
-//                    colorArray.push(Color.Green);
-//                    break;
-//                case 3:    
-//                    colorArray.push(Color.Grey);
-//                    break;
-//                case 4:
-//                    colorArray.push(Color.Orange);
-//                    break;
-//                case 5:
-//                    colorArray.push(Color.Red);
-//                    break;
-//                case 6:
-//                    colorArray.push(Color.Yellow);
-//                    break;
-//                case 7:
-//                    colorArray.push(Color.Rainbow);
-//                    break;
-//            }
+            switch (j)
+            {
+                case 0: 
+                    colorArray.push(Color.Black);
+                    break;
+                case 1:
+                    colorArray.push(Color.Blue);
+                    break;
+                case 2:
+                    colorArray.push(Color.Green);
+                    break;
+                case 3:    
+                    colorArray.push(Color.Grey);
+                    break;
+                case 4:
+                    colorArray.push(Color.Orange);
+                    break;
+                case 5:
+                    colorArray.push(Color.Red);
+                    break;
+                case 6:
+                    colorArray.push(Color.Yellow);
+                    break;
+                case 7:
+                    colorArray.push(Color.Rainbow);
+                    break;
+            }
         }
         
     }
