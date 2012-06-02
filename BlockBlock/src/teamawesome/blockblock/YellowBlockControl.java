@@ -5,6 +5,7 @@
 package teamawesome.blockblock;
 
 import com.jme3.math.Vector3f;
+import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
 /**
@@ -33,6 +34,7 @@ public class YellowBlockControl extends BlockControl {
             case rotateState:
                 switch(YState)
                 {
+                    //TODO: Add in correct grid spot fix drop?
                     case checkState:
                         adj = gridNode.getControl(GridControl.class).getblockAdjacent(x, y);
                         int i = 0;
@@ -41,34 +43,59 @@ public class YellowBlockControl extends BlockControl {
                             if(s != null) 
                             {
                                 check = s;
-                                V[i++] = s.getLocalTranslation();
+                                V[i] = s.getLocalTranslation();
                             }
                             else
                             {
-                                V[i++] = null;
+                                switch(i)
+                                {
+                                    case 0: 
+                                        V[i] = ((Node)gridNode).getChild("Tile" + (x - 1) + "_" + (y - 1)).getWorldTranslation();
+                                        break;
+                                    case 1: 
+                                        V[i] = ((Node)gridNode).getChild("Tile" + (x - 1) + "_" + y).getWorldTranslation();
+                                        break;
+                                    case 2: 
+                                        V[i] = ((Node)gridNode).getChild("Tile" + (x - 1) + "_" + (y + 1)).getWorldTranslation();
+                                        break;
+                                    case 3: 
+                                        V[i] = ((Node)gridNode).getChild("Tile" + x + "_" + (y + 1)).getWorldTranslation();
+                                        break;  
+                                    case 4: 
+                                        V[i] = ((Node)gridNode).getChild("Tile" + (x + 1) + "_" + (y + 1)).getWorldTranslation();
+                                        break;
+                                    case 5: 
+                                        V[i] = ((Node)gridNode).getChild("Tile" + (x + 1) + "_" + y).getWorldTranslation();
+                                        break;
+                                    case 6: 
+                                        V[i] = ((Node)gridNode).getChild("Tile" + (x + 1) + "_" + (y - 1)).getWorldTranslation();
+                                        break;
+                                    case 7: 
+                                        V[i] = ((Node)gridNode).getChild("Tile" + x + "_" + (y - 1)).getWorldTranslation();
+                                        break;    
+                                }
                             }
+                            i++;
                         }
                         
                         if(check == null) state = BlockState.idleState;
                         else YState = YellowState.liftState;
                         
                         break;
+                    
                     case rotateState:
-//                        i = 1;
-//                        for(Spatial s: adj)
-//                        {
-//                            if(s != null && V[i%8] != null) 
-//                            {
-//                                s.setLocalTranslation(V[i%8]);
-//                                i++;
-//                            }
-//                            else
-//                            {
-//                                i++;
-//                            }
-//                        }
+                        i = 1;
+                        for(Spatial s: adj)
+                        {
+                            if(s != null) 
+                            {
+                                s.setLocalTranslation(V[i%8]);
+                                i++;
+                            }
+                        }
                         YState = YellowState.dropState;
                         break;
+                    
                     case dropState:
                         for(Spatial s: adj)
                         {
@@ -81,6 +108,7 @@ public class YellowBlockControl extends BlockControl {
                         
                         if(check != null && check.getLocalTranslation().getZ() <= .5f) state = BlockState.idleState;;
                         break;
+                    
                     case liftState:
                         for(Spatial s: adj)
                         {
