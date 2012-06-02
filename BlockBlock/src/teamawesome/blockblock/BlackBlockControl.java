@@ -30,7 +30,7 @@ public class BlackBlockControl extends BlockControl {
                     if(s != null && s.getControl(BlockControl.class).getColor() == Color.Grey) continue;
                     else if(s != null) s.getControl(BlockControl.class).setState(BlockState.clearingState);
                 }
-                state = BlockState.killState;
+                state = BlockState.clearingState;
                 break;
             case countDownState:
                 //TODO: countdown code

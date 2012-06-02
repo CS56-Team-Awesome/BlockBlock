@@ -35,7 +35,7 @@ public class RedBlockControl extends BlockControl {
                     else if(s != null) s.getControl(BlockControl.class).setState(BlockState.clearingState);
                 }
                 
-                state = BlockState.killState;
+                state = BlockState.clearingState;
                 break;
             default:
                 super.controlUpdate(tpf);
