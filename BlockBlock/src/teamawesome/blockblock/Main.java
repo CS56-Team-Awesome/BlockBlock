@@ -28,10 +28,10 @@ public class Main extends SimpleApplication {
         // Get the default toolkit
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         // Get the current screen size
-        Dimension scrnsize = toolkit.getScreenSize();
+        Dimension screenSize = toolkit.getScreenSize();
         
         settings = new AppSettings(true);
-        settings.setResolution((int)(scrnsize.width/1.2), (int)(scrnsize.height/1.2));
+        settings.setResolution((int)(screenSize.width/1.2), (int)(screenSize.height/1.2));
         settings.setTitle("BlockBlock");
         settings.setFrameRate(60);
         //settings.setFullscreen(true); 
