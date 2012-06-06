@@ -216,7 +216,7 @@ public class YellowBlockControl extends BlockControl {
                         }
                         for(Spatial s: adj)
                         {
-                            if(s != null && s.getWorldTranslation().getZ() <= .5f)
+                            if(s != null && s.getLocalTranslation().getZ() <= .5f)
                             {
                                 i++;
                             }
