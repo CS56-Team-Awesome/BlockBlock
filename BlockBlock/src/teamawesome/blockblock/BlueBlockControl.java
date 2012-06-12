@@ -28,7 +28,7 @@ public class BlueBlockControl extends BlockControl {
                 {
                     if(s != null && s.getControl(BlockControl.class).getColor() == Color.Blue) s.getControl(BlockControl.class).setState(BlockState.explodeState);
                 }
-                state = BlockState.clearingState;  
+                state = BlockState.clearingState; 
             default:
                 super.controlUpdate(tpf);
         }

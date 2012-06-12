@@ -18,7 +18,7 @@ import teamawesome.blockblock.BlockControl.Color;
 
 /**
  *
- * @author kaizokuace
+ * @author kaizokuace & Kayvan Boudai
  */
 public class GridControl extends AbstractControl implements Savable, Cloneable {
     /*-------------------------------Fields-----------------------------------*/
@@ -30,6 +30,8 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     private AssetManager assetManager;
     private BlockFactory nextBlock;
     private static boolean make = true;
+    private Random rand = new Random();
+    private int dropnum = 0;
     
     /*-------------------------------Constructor------------------------------*/
     public GridControl(int gridX, int gridY, Cursor cursor, Stack<Color> colorArray, AssetManager assetManager, Node rootNode) {
@@ -40,8 +42,6 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         this.gridY = gridY;
         this.blockNode = rootNode.getChild("blockNode");
         this.assetManager = assetManager;
-        
-        Random rand = new Random();
         
         for (int i = 0; i < 1000; i++)
         {
@@ -238,12 +238,15 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
             nextBlock = new BlockFactory(blockNode, assetManager, colorArray.peek());
             nextBlock.getBlock().setLocalTranslation(blockNode.getParent().getChild("Tile" + (gridX-1) + "_" + (gridY-1)).getWorldTranslation());
             nextBlock.getBlock().move(2f, 0, 0);
+//            make = false;
+//        }
+//        else if (!colorArray.empty())
+//        {
+//            changeColor(nextBlock.getBlock(), colorArray.peek());
+//            System.out.println("\n\n\n\nNext Color is " + colorArray.peek() + "\n\n\n");
         }
-        else if (!colorArray.empty())
-        {
-            changeColor(nextBlock.getBlock(), colorArray.peek());
-            System.out.println("\n\n\n\nNext Color is " + colorArray.peek() + "\n\n\n");
-        }
+        
+        System.out.println(dropnum++);
         
     }
     
@@ -257,6 +260,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
      
         block.getBlock().setLocalTranslation(B.getLocalTranslation());
         
+        //if (B != null) 
         B.getParent().detachChild(B);
         
         grid[block.getBlock().getControl(BlockControl.class).getX()][block.getBlock().getControl(BlockControl.class).getY()] = block.getBlock();

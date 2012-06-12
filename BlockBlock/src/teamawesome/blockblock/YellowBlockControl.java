@@ -101,105 +101,116 @@ public class YellowBlockControl extends BlockControl {
                     
                     case rotateState:
                         i = 1;
+                        boolean dead = false;
                         for(Spatial s: adj)
                         {
-                            if(s != null) 
+                            if(s != null && V[i%8] !=null) 
                             {
                                 s.setLocalTranslation(V[i%8]);
                                 s.move(0f, 0f, 4f);
+                                dead = false;
+                            }
+                            else if(s != null && V[i%8] == null)
+                            {
+                                s.getControl(BlockControl.class).setState(BlockState.clearingState);
+                                dead = true;
+                                adjCount--;
                             }
                             
-                            switch(i%8)
-                                {
-                                    case 0: 
-                                        if(inBound(x - 1, y - 1)) 
-                                        {
-                                            grid[x - 1][y - 1] = s;
-                                            if(s != null)
+                            if(!dead)
+                            {
+                                switch(i%8)
+                                    {
+                                        case 0: 
+                                            if(inBound(x - 1, y - 1)) 
                                             {
-                                                grid[x - 1][y - 1].getControl(BlockControl.class).setX(x - 1);
-                                                grid[x - 1][y - 1].getControl(BlockControl.class).setY(y - 1);
+                                                grid[x - 1][y - 1] = s;
+                                                if(s != null)
+                                                {
+                                                    grid[x - 1][y - 1].getControl(BlockControl.class).setX(x - 1);
+                                                    grid[x - 1][y - 1].getControl(BlockControl.class).setY(y - 1);
+                                                }
                                             }
-                                        }
-                                        break;
-                                    case 1: 
-                                        if(inBound(x - 1, y))
-                                        {
-                                            grid[x - 1][y] = s;
-                                            if(s != null)
+                                            break;
+                                        case 1: 
+                                            if(inBound(x - 1, y))
                                             {
-                                                grid[x - 1][y].getControl(BlockControl.class).setX(x - 1);
-                                                grid[x - 1][y].getControl(BlockControl.class).setY(y);
+                                                grid[x - 1][y] = s;
+                                                if(s != null)
+                                                {
+                                                    grid[x - 1][y].getControl(BlockControl.class).setX(x - 1);
+                                                    grid[x - 1][y].getControl(BlockControl.class).setY(y);
+                                                }
                                             }
-                                        }
-                                        break;
-                                    case 2: 
-                                        if(inBound(x - 1, y + 1))
-                                        {
-                                            grid[x - 1][y + 1] = s;
-                                            if(s != null)
+                                            break;
+                                        case 2: 
+                                            if(inBound(x - 1, y + 1))
                                             {
-                                                grid[x - 1][y + 1].getControl(BlockControl.class).setX(x - 1);
-                                                grid[x - 1][y + 1].getControl(BlockControl.class).setY(y + 1);
+                                                grid[x - 1][y + 1] = s;
+                                                if(s != null)
+                                                {
+                                                    grid[x - 1][y + 1].getControl(BlockControl.class).setX(x - 1);
+                                                    grid[x - 1][y + 1].getControl(BlockControl.class).setY(y + 1);
+                                                }
                                             }
-                                        }
-                                        break;
-                                    case 3: 
-                                        if(inBound(x, y + 1)) 
-                                        {
-                                            grid[x][y + 1] = s;
-                                            if(s != null)
+                                            break;
+                                        case 3: 
+                                            if(inBound(x, y + 1)) 
                                             {
-                                                grid[x][y + 1].getControl(BlockControl.class).setX(x);
-                                                grid[x][y + 1].getControl(BlockControl.class).setY(y + 1);
+                                                grid[x][y + 1] = s;
+                                                if(s != null)
+                                                {
+                                                    grid[x][y + 1].getControl(BlockControl.class).setX(x);
+                                                    grid[x][y + 1].getControl(BlockControl.class).setY(y + 1);
+                                                }
                                             }
-                                        }
-                                        break;  
-                                    case 4: 
-                                        if(inBound(x + 1, y + 1))
-                                        {
-                                            grid[x + 1][y + 1] = s;
-                                            if(s != null)
+                                            break;  
+                                        case 4: 
+                                            if(inBound(x + 1, y + 1))
                                             {
-                                                grid[x + 1][y + 1].getControl(BlockControl.class).setX(x + 1);
-                                                grid[x + 1][y + 1].getControl(BlockControl.class).setY(y + 1);
+                                                grid[x + 1][y + 1] = s;
+                                                if(s != null)
+                                                {
+                                                    grid[x + 1][y + 1].getControl(BlockControl.class).setX(x + 1);
+                                                    grid[x + 1][y + 1].getControl(BlockControl.class).setY(y + 1);
+                                                }
                                             }
-                                        }
-                                        break;
-                                    case 5: 
-                                        if(inBound(x + 1, y))
-                                        {
-                                            grid[x + 1][y] = s;
-                                            if(s != null)
+                                            break;
+                                        case 5: 
+                                            if(inBound(x + 1, y))
                                             {
-                                                grid[x + 1][y].getControl(BlockControl.class).setX(x + 1);
-                                                grid[x + 1][y].getControl(BlockControl.class).setY(y);
+                                                grid[x + 1][y] = s;
+                                                if(s != null)
+                                                {
+                                                    grid[x + 1][y].getControl(BlockControl.class).setX(x + 1);
+                                                    grid[x + 1][y].getControl(BlockControl.class).setY(y);
+                                                }
                                             }
-                                        }
-                                        break;
-                                    case 6: 
-                                        if(inBound(x + 1, y - 1)) 
-                                        {
-                                            grid[x + 1][y - 1] = s;
-                                            if(s != null)
+                                            break;
+                                        case 6: 
+                                            if(inBound(x + 1, y - 1)) 
                                             {
-                                                grid[x + 1][y - 1].getControl(BlockControl.class).setX(x + 1);
-                                                grid[x + 1][y - 1].getControl(BlockControl.class).setY(y - 1);
+                                                grid[x + 1][y - 1] = s;
+                                                if(s != null)
+                                                {
+                                                    grid[x + 1][y - 1].getControl(BlockControl.class).setX(x + 1);
+                                                    grid[x + 1][y - 1].getControl(BlockControl.class).setY(y - 1);
+                                                }
                                             }
-                                        }
-                                        break;
-                                    case 7: 
-                                        if(inBound(x, y - 1)) 
-                                        {
-                                            grid[x][y - 1] = s;
-                                            if(s != null)
+                                            break;
+                                        case 7: 
+                                            if(inBound(x, y - 1)) 
                                             {
-                                                grid[x][y - 1].getControl(BlockControl.class).setX(x);
-                                                grid[x][y - 1].getControl(BlockControl.class).setY(y - 1);
+                                                grid[x][y - 1] = s;
+                                                if(s != null)
+                                                {
+                                                    grid[x][y - 1].getControl(BlockControl.class).setX(x);
+                                                    grid[x][y - 1].getControl(BlockControl.class).setY(y - 1);
+                                                }
                                             }
-                                        }
-                                        break;    
-                                }
+                                            break;    
+                                    }
+                            }
                                 i++;
                         }
                         YState = YellowState.dropState;
@@ -216,7 +227,7 @@ public class YellowBlockControl extends BlockControl {
                         }
                         for(Spatial s: adj)
                         {
-                            if(s != null && s.getLocalTranslation().getZ() <= .5f)
+                            if(s != null && s.getLocalTranslation().getZ() <= 0f )
                             {
                                 i++;
                             }
@@ -235,7 +246,7 @@ public class YellowBlockControl extends BlockControl {
                         }
                         for(Spatial s: adj)
                         {
-                            if(s != null && s.getLocalTranslation().getZ() >= 4f)
+                            if(s != null && s.getLocalTranslation().getZ() >= 3f )
                             {
                                 i++;
                             }

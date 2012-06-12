@@ -67,6 +67,7 @@ public class BlockControl extends AbstractControl implements Savable, Cloneable 
         
         switch (state) {
         case idleState:
+            if (spatial.getLocalTranslation().getZ() <= .05f) spatial.move(0,0,.05f);
             //TODO: add idle animation?
             break;
         case clearingState:
