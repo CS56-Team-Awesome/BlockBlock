@@ -228,7 +228,7 @@ public class YellowBlockControl extends BlockControl {
                                 s.move(0, 0, -.07f);
                                 //s.getControl(BlockControl.class).setState(BlockState.dropState);
                             
-                                if(s.getLocalTranslation().getZ() < 0f )
+                                if(s.getLocalTranslation().getZ() <= .5f )
                                 {
                                     i++;
                                 }
