@@ -104,17 +104,20 @@ public class YellowBlockControl extends BlockControl {
                         boolean dead = false;
                         for(Spatial s: adj)
                         {
-                            if(s != null && V[i%8] !=null) 
+                            if(s != null)
                             {
-                                s.setLocalTranslation(V[i%8]);
-                                s.move(0f, 0f, 4f);
-                                dead = false;
-                            }
-                            else if(s != null && V[i%8] == null)
-                            {
-                                s.getControl(BlockControl.class).setState(BlockState.clearingState);
-                                dead = true;
-                                adjCount--;
+                                if(V[i%8] !=null) 
+                                {
+                                    s.setLocalTranslation(V[i%8]);
+                                    s.move(0f, 0f, 4f);
+                                    dead = false;
+                                }
+                                else if(V[i%8] == null)
+                                {
+                                    s.getControl(BlockControl.class).setState(BlockState.clearingState);
+                                    dead = true;
+                                    adjCount--;
+                                }
                             }
                             
                             if(!dead)
@@ -222,18 +225,22 @@ public class YellowBlockControl extends BlockControl {
                         {
                             if(s != null)
                             {
-                                s.move(0, 0, -.05f);
+                                s.move(0, 0, -.07f);
+                                //s.getControl(BlockControl.class).setState(BlockState.dropState);
+                            
+                                if(s.getLocalTranslation().getZ() < 0f )
+                                {
+                                    i++;
+                                }
                             }
                         }
-                        for(Spatial s: adj)
-                        {
-                            if(s != null && s.getLocalTranslation().getZ() <= 0f )
-                            {
-                                i++;
-                            }
-                        }
+                        
                         System.out.println(i + "\n\n\n\n\n\n");
-                        if (i >= adjCount) state = BlockState.idleState;
+                        if (i >= adjCount)
+                        {
+                            state = BlockState.idleState;
+                        }
+                        i = 0;
                         break;
                     
                     case liftState:
@@ -242,15 +249,15 @@ public class YellowBlockControl extends BlockControl {
                             if(s != null)
                             {
                                 s.move(0, 0, .05f);
+                            
+                            
+                                if( s.getLocalTranslation().getZ() >= 3f )
+                                {
+                                    i++;
+                                }
                             }
                         }
-                        for(Spatial s: adj)
-                        {
-                            if(s != null && s.getLocalTranslation().getZ() >= 3f )
-                            {
-                                i++;
-                            }
-                        }
+                        
                         System.out.println(i + "\n\n\n\n\n\n");
                         if (i >= adjCount) YState = YellowState.rotateState; 
                 }
