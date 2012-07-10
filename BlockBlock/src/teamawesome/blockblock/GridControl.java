@@ -5,6 +5,7 @@ package teamawesome.blockblock;
 
 import com.jme3.asset.AssetManager;
 import com.jme3.export.Savable;
+import com.jme3.material.Material;
 import com.jme3.renderer.RenderManager;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
@@ -32,6 +33,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     private static boolean make = true;
     private Random rand = new Random();
     private int dropnum = 0;
+    private Material mat;
     
     /*-------------------------------Constructor------------------------------*/
     public GridControl(int gridX, int gridY, Cursor cursor, Stack<Color> colorArray, AssetManager assetManager, Node rootNode) {
@@ -42,6 +44,7 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
         this.gridY = gridY;
         this.blockNode = rootNode.getChild("blockNode");
         this.assetManager = assetManager;
+        this.mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
         
         for (int i = 0; i < 1000; i++)
         {
@@ -104,61 +107,6 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
     public void setGrid(Spatial[][] grid) { this.grid = grid; }
     
     /*-------------------------------Functions--------------------------------*/
-//    public ArrayList<Spatial> getAdjacent() {
-//        ArrayList<Spatial> adjList = new ArrayList<Spatial>();
-//        int x = cursor.getX() - 1;
-//        int y = cursor.getY() - 1;
-//        
-//        for(int i = 0; i < 3; i++)
-//        {
-//            if (((x >= 0 && x < gridX)) && ((y >= 0 && y < gridY)))
-//            {
-//                adjList.add(grid[x][y]);
-//            }
-//            
-//            if(i<2)y++;
-//            
-//        }
-//        
-//        for(int i = 0; i < 2; i++)
-//        {
-//            if (((x + 1 >= 0 && x + 1 < gridX)) && ((y >= 0 && y < gridY)))
-//            {
-//                adjList.add(grid[++x][y]);
-//            }
-//            else
-//            {
-//                x++;
-//            }
-//        }
-//        
-//        for(int i = 0; i < 2; i++)
-//        {
-//            if (((x >= 0 && x < gridX)) && ((y - 1  >= 0 && y - 1 < gridY)))
-//            {
-//                adjList.add(grid[x][--y]);
-//            }
-//            else
-//            {
-//                y--;
-//            }
-//        }
-//        
-//        if (((x - 1 >= 0 && x - 1 < gridX)) && ((y >= 0 && y < gridY)))
-//            {
-//                adjList.add(grid[--x][y]);
-//            }
-//        
-//        
-////        for(int i = cursor.getX() - 1;  i <= cursor.getX() + 1; i++) {
-////            for(int j = cursor.getY() - 1; j <= cursor.getY() + 1; j++) {
-////                if (!(i >= 0 && i < gridX) ) continue;
-////                if ( (!(j >= 0 && j < gridY)) || (i == cursor.getX() && j == cursor.getY())) continue;
-////                adjList.add(grid[i][j]);
-////            }
-////        }
-//        return adjList;
-//    }
     
     public ArrayList<Spatial> getblockAdjacent(int X, int Y ) {
         ArrayList<Spatial> adjList = new ArrayList<Spatial>();
@@ -205,14 +153,6 @@ public class GridControl extends AbstractControl implements Savable, Cloneable {
                 adjList.add(grid[--x][y]);
             }
         
-        
-//        for(int i = cursor.getX() - 1;  i <= cursor.getX() + 1; i++) {
-//            for(int j = cursor.getY() - 1; j <= cursor.getY() + 1; j++) {
-//                if (!(i >= 0 && i < gridX) ) continue;
-//                if ( (!(j >= 0 && j < gridY)) || (i == cursor.getX() && j == cursor.getY())) continue;
-//                adjList.add(grid[i][j]);
-//            }
-//        }
         return adjList;
     }
     
